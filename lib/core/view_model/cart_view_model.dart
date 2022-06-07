@@ -1,7 +1,7 @@
-import 'package:flutter/cupertino.dart';
+
 import 'package:get/get.dart';
-import 'package:shopping_app/core/services/database/cartDatabase.dart';
-import 'package:shopping_app/model/cart_porduct_model.dart';
+
+
 
 class CartViewModel extends GetxController {
   // ValueNotifier<bool> get loading => _loading;
