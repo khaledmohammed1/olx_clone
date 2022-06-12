@@ -6,7 +6,6 @@ import 'helper/binding.dart';
 import 'view/control_screen.dart';
 
 void main() async{
-
   WidgetsFlutterBinding.ensureInitialized();
    await Firebase.initializeApp();
    runApp(const MyApp());
@@ -38,7 +37,7 @@ class MyApp extends StatelessWidget {
           primaryColor: primaryColor,
           primarySwatch: MaterialColor(0xff00C569,color),
       ),
-      home:  ControlScreen()
+      home:  const ControllScreen()
     );
   }
 }

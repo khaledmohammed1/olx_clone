@@ -1,26 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shopping_app/core/view_model/auth_view_model.dart';
-import 'package:shopping_app/view/auth/login_Screen.dart';
 import '../constance.dart';
 import '../core/view_model/control_view_model.dart';
+import 'auth/login_Screen.dart';
 
 
 // ignore: must_be_immutable
-class ControlScreen extends GetWidget<AuthViewModel> {
-    ControlScreen({Key? key}) : super(key: key);
+class ControllScreen extends GetWidget<AuthViewModel> {
+   const ControllScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-      return (Get.find<AuthViewModel>().user == null)
-          ? LoginScreen()
-          : GetBuilder<ControlViewModel>(
+
+      return
+        Get.find<AuthViewModel>().user == null?
+           LoginScreen():
+           GetBuilder<ControlViewModel>(
               init: Get.put(ControlViewModel()),
             builder:(controller)=> Scaffold(
               bottomNavigationBar: _bottomNavigationBar(),
               body: controller.currentScreen,
-
             ),
           );
     });
@@ -28,7 +29,7 @@ class ControlScreen extends GetWidget<AuthViewModel> {
 
   Widget _bottomNavigationBar() {
     return GetBuilder<ControlViewModel>(
-      init:ControlViewModel(),
+      init: Get.put(ControlViewModel()),
       builder: (controller)=>BottomNavigationBar(
         elevation: 0,
         items: [

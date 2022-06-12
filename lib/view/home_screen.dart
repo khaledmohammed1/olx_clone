@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shopping_app/constance.dart';
 import 'package:shopping_app/core/view_model/home_view_model.dart';
-import 'package:shopping_app/view/products_details.dart';
+import 'package:shopping_app/view/widgets/products_details.dart';
 
 import '../core/view_model/control_view_model.dart';
 

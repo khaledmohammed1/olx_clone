@@ -5,7 +5,7 @@ import 'package:shopping_app/model/cart_porduct_model.dart';
 import 'package:shopping_app/view/widgets/custom_button.dart';
 import 'package:shopping_app/view/widgets/custom_text.dart';
 
-import '../model/product_model.dart';
+import '../../model/product_model.dart';
 
 // ignore: must_be_immutable
 class ProductDetail extends StatelessWidget {

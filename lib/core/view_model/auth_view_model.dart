@@ -5,7 +5,9 @@ import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shopping_app/core/services/firestore_user.dart';
 import 'package:shopping_app/model/user_model.dart';
-import 'package:shopping_app/view/home_screen.dart';
+import 'package:shopping_app/view/auth/login_Screen.dart';
+import 'package:shopping_app/view/control_screen.dart';
+
 
 class AuthViewModel extends GetxController {
   final GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ['email']);
@@ -55,7 +57,7 @@ class AuthViewModel extends GetxController {
         name:user.user!.displayName,
         pic: '',
       ));
-      Get.offAll(HomeScreen());
+      Get.offAll(const ControllScreen());
     });
   }
 
@@ -64,7 +66,7 @@ class AuthViewModel extends GetxController {
       await _auth
           .signInWithEmailAndPassword(email: email, password: password)
           .then((value) => print(value));
-      Get.offAll(HomeScreen());
+      Get.offAll(const ControllScreen());
     } catch (e) {
       print(e);
       Get.snackbar(
@@ -83,7 +85,7 @@ class AuthViewModel extends GetxController {
           .then((user) async {
         saveUser(user);
       });
-      Get.offAll(HomeScreen());
+      Get.offAll(LoginScreen());
     } catch (e) {
       print(e);
       Get.snackbar(
