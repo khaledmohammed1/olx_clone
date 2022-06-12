@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:shopping_app/constance.dart';
+import 'package:shopping_app/view/widgets/custom_button.dart';
 import 'package:shopping_app/view/widgets/custom_text.dart';
 
 class CartScreen extends StatelessWidget {
@@ -72,6 +73,8 @@ class CartScreen extends StatelessWidget {
                               const SizedBox(height: 10),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.end,
+
                                 children: [
                                   Text(
                                     prices[index].toString(),
@@ -85,7 +88,7 @@ class CartScreen extends StatelessWidget {
                                     "EGP",
                                     style: TextStyle(
                                         color: Colors.black,
-                                        fontSize: 18.0,
+                                        fontSize: 16.0,
                                         fontWeight: FontWeight.w400),
                                   ),
                                 ],
@@ -150,6 +153,52 @@ class CartScreen extends StatelessWidget {
               ),
             ),
           ),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 10.0,left: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children:  [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children:  [
+                    const SizedBox(height: 8.0),
+                    const Text(
+                      "Total",
+                      style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 26.0,
+                          fontWeight: FontWeight.w500),
+                    ),
+                    const SizedBox(height: 10),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Text(
+                          "1111",
+                          style: TextStyle(
+                              color: Theme.of(context).primaryColor,
+                              fontSize: 20,
+                              fontWeight: FontWeight.w600),
+                        ),
+                        const SizedBox(width: 3),
+                        const Text(
+                          "EGP",
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 16.0,
+                              fontWeight: FontWeight.w400),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                Container(
+                  padding: const EdgeInsets.only(right: 20),
+                    width: MediaQuery.of(context).size.width*.55,
+                    child: CustomButton(text: "CheckOut", onPressed: (){})),
+              ],
+            ),
+          )
         ],
       ),
     );
