@@ -67,7 +67,8 @@ class CartProductModel {
 
   });
 
-  String name, image, quantity, price;
+  String name, image, price;
+  int quantity;
 
 
   factory CartProductModel.fromJson(Map<String, dynamic> json) => CartProductModel(
