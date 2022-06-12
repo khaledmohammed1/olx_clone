@@ -74,7 +74,6 @@ class CartScreen extends StatelessWidget {
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.end,
-
                                 children: [
                                   Text(
                                     prices[index].toString(),
@@ -106,7 +105,7 @@ class CartScreen extends StatelessWidget {
                                       ),
                                       child: const Icon(
                                         Icons.add,
-                                        size :30,
+                                        size: 30,
                                         color: Colors.black,
                                       )),
                                   const SizedBox(
@@ -154,13 +153,14 @@ class CartScreen extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(bottom: 10.0,left: 20),
+            padding: const EdgeInsets.only(bottom: 10.0, left: 20, top: 10),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children:  [
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children:  [
+                  children: [
                     const SizedBox(height: 8.0),
                     const Text(
                       "Total",
@@ -193,12 +193,12 @@ class CartScreen extends StatelessWidget {
                   ],
                 ),
                 Container(
-                  padding: const EdgeInsets.only(right: 20),
-                    width: MediaQuery.of(context).size.width*.55,
-                    child: CustomButton(text: "CheckOut", onPressed: (){})),
+                    padding: const EdgeInsets.only(right: 20, bottom: 2),
+                    width: MediaQuery.of(context).size.width * .6,
+                    child: CustomButton(text: "CheckOut", onPressed: () {})),
               ],
             ),
-          )
+          ),
         ],
       ),
     );

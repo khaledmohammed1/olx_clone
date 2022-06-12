@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 const String tableCartProduct = "cartProduct";
 const String columnName = "name";
 const String columnImage = "image";
