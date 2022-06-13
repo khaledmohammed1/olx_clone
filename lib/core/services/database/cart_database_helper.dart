@@ -27,7 +27,8 @@ class CartDataBaseHelper {
        $columnName TEXT NOT NULL,
        $columnImage TEXT NOT NULL,
        $columnPrice TEXT NOT NULL,
-       $columnQuantity INTEGER NOT NULL)
+       $columnQuantity INTEGER NOT NULL,
+       $columnProductId TEXT NOT NULL)
        ''');
       },
     );

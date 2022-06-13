@@ -148,10 +148,12 @@ class ProductDetail extends StatelessWidget {
                     onPressed: () {
                       controller.addProduct(
                         CartProductModel(
-                            image: model.image,
-                            name: model.name,
-                            price: model.price,
-                            quantity: 1),
+                          image: model.image,
+                          name: model.name,
+                          price: model.price,
+                          quantity: 1,
+                          productId: model.productId,
+                        ),
                       );
                       // cartController.addToCart(model);
                     },

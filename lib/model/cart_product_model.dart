@@ -10,10 +10,11 @@ class CartProductModel {
     required this.name,
     required this.price,
     required this.quantity,
+    required this.productId,
 
   });
 
-  String name, image, price;
+  String name, image, price,productId;
   int quantity;
 
   factory CartProductModel.fromJson(Map<String, dynamic> json) =>
@@ -22,6 +23,7 @@ class CartProductModel {
         image: json['image'],
         quantity: json['quantity'],
         price: json['price'],
+        productId: json['productId'],
       );
 
   Map<String, dynamic> toJson() =>
@@ -30,5 +32,6 @@ class CartProductModel {
         "name": name,
         "quantity": quantity,
         "price": price,
+        "productId": productId,
       };
 }

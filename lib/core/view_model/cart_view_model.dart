@@ -41,6 +41,9 @@ class CartViewModel extends GetxController {
   }
 
   addProduct(CartProductModel cartProductModel) async {
+    for(int i =0;i<_cartProductModel.length;i++){
+
+    }
     var dbHelper = CartDataBaseHelper.db;
     await dbHelper.insert(cartProductModel);
     Get.snackbar(
