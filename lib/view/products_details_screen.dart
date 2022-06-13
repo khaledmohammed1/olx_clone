@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shopping_app/model/cart_product_model.dart';
 import 'package:shopping_app/view/widgets/custom_button.dart';
+
 import '../core/view_model/cart_view_model.dart';
 import '../model/product_model.dart';
 
@@ -137,13 +139,23 @@ class ProductDetail extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(
-                width: MediaQuery.of(context).size.width * .55,
-                child: CustomButton(
-                  text: 'add to cart',
-                  onPressed: () {
-                    cartController.addToCart(model);
-                  },
+              GetBuilder<CartViewModel>(
+                init: CartViewModel(),
+                builder: (controller) => SizedBox(
+                  width: MediaQuery.of(context).size.width * .55,
+                  child: CustomButton(
+                    text: 'add to cart',
+                    onPressed: () {
+                      controller.addProduct(
+                        CartProductModel(
+                            image: model.image,
+                            name: model.name,
+                            price: model.price,
+                            quantity: 1),
+                      );
+                      // cartController.addToCart(model);
+                    },
+                  ),
                 ),
               ),
             ],

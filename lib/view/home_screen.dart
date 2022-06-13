@@ -247,8 +247,8 @@ class HomeScreen extends StatelessWidget {
                           const SizedBox(width: 16),
                           GestureDetector(
                             onTap: (){
-                              cartViewModel.addToCart(
-                                  controller.productModel[index]);
+                              // cartViewModel.addToCart(
+                              //     controller.productModel[index]);
                             },
                             child: Container(
                               width: 30,

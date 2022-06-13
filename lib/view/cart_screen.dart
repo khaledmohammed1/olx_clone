@@ -18,36 +18,36 @@ class CartScreen extends StatelessWidget {
     this.model,
   }) : super(key: key);
 
-
-
-
-  List<String> names = [
-    "product name",
-    "product name",
-    "product name",
-    "product name",
-    "product name",
-    "product name",
-    "product name",
-  ];
-  List<int> prices = [
-    100,
-    300,
-    400,
-    120,
-    160,
-    160,
-    160,
-  ];
-  List<String> images = <String>[
-    "assets/images/fruits.png",
-    "assets/images/fruits.png",
-    "assets/images/fruits.png",
-    "assets/images/shopping-cart.png",
-    "assets/images/fruits.png",
-    "assets/images/fruits.png",
-    "assets/images/fruits.png",
-  ];
+  //
+  //
+  //
+  // List<String> names = [
+  //   "product name",
+  //   "product name",
+  //   "product name",
+  //   "product name",
+  //   "product name",
+  //   "product name",
+  //   "product name",
+  // ];
+  // List<int> prices = [
+  //   100,
+  //   300,
+  //   400,
+  //   120,
+  //   160,
+  //   160,
+  //   160,
+  // ];
+  // List<String> images = <String>[
+  //   "assets/images/fruits.png",
+  //   "assets/images/fruits.png",
+  //   "assets/images/fruits.png",
+  //   "assets/images/shopping-cart.png",
+  //   "assets/images/fruits.png",
+  //   "assets/images/fruits.png",
+  //   "assets/images/fruits.png",
+  // ];
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +57,8 @@ class CartScreen extends StatelessWidget {
           Expanded(
             child: Padding(
               padding: const EdgeInsets.only(left: 10),
-              child: GetX<CartViewModel>(
+              child: GetBuilder<CartViewModel>(
+                init: Get.put(CartViewModel()),
                 builder:(controller)=> ListView.separated(
                   physics: const BouncingScrollPhysics(),
                   itemBuilder: (context, index) {
@@ -69,7 +70,7 @@ class CartScreen extends StatelessWidget {
                               height: MediaQuery.of(context).size.height * .14,
                               width: MediaQuery.of(context).size.width * .3,
                               child: Image.network(
-                                controller.cartItems[index].image.toString(),
+                                 controller.cartProductModel[index].image.toString(),
                                 fit: BoxFit.fill,
                               )),
                           Padding(
@@ -78,8 +79,9 @@ class CartScreen extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 const SizedBox(height: 8.0),
-                                Text(
-                                  controller.cartItems[index].name.toString(),
+                                 Text(
+                                  controller.cartProductModel[index].name,
+                                  // controller.cartItems[index].name.toString(),
                                   style: const TextStyle(
                                       color: Colors.black,
                                       fontSize: 20.0,
@@ -91,7 +93,7 @@ class CartScreen extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
                                     Text(
-                                      controller.cartItems[index].price.toString(),
+                                       controller.cartProductModel[index].price.toString(),
                                       style: TextStyle(
                                           color: Theme.of(context).primaryColor,
                                           fontSize: 20,
@@ -158,7 +160,8 @@ class CartScreen extends StatelessWidget {
                       ),
                     );
                   },
-                  itemCount: controller.cartItems.length,
+                   itemCount: controller.cartProductModel.length,
+
                   separatorBuilder: (BuildContext context, int index) {
                     return const SizedBox(
                       height: 10,
@@ -170,8 +173,7 @@ class CartScreen extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.only(bottom: 10.0, left: 20, top: 10),
-            child: GetX<CartViewModel>(
-              builder:(controller)=> Row(
+            child:  Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
@@ -191,7 +193,8 @@ class CartScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           Text(
-                            controller.totalPrice.toString(),
+                            "price",
+                            // controller.totalPrice.toString(),
                             style: TextStyle(
                                 color: Theme.of(context).primaryColor,
                                 fontSize: 20,
@@ -218,7 +221,6 @@ class CartScreen extends StatelessWidget {
                 ],
               ),
             ),
-          ),
         ],
       ),
     );
