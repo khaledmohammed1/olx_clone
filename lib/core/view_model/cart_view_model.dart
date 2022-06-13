@@ -25,35 +25,49 @@ class CartViewModel extends GetxController {
   ValueNotifier<bool> _loading = ValueNotifier(false);
 
   List<CartProductModel> _cartProductModel = [];
+
   List<CartProductModel> get cartProductModel => _cartProductModel;
 
-  CartViewModel(){
+  CartViewModel() {
     getAllProduct();
   }
 
   getAllProduct() async {
     _loading.value = true;
     var dbHelper = CartDataBaseHelper.db;
-   _cartProductModel =  await dbHelper.getAllProduct();
-   print(_cartProductModel.length);
+    _cartProductModel = await dbHelper.getAllProduct();
+    print(_cartProductModel.length);
     _loading.value = false;
     update();
   }
 
   addProduct(CartProductModel cartProductModel) async {
-    for(int i =0;i<_cartProductModel.length;i++){
-
+    if (_cartProductModel.isEmpty) {
+      var dbHelper = CartDataBaseHelper.db;
+      await dbHelper.insert(cartProductModel);
+    } else {
+      for (int i = 0; i < _cartProductModel.length; i++) {
+        if (_cartProductModel[i].productId == cartProductModel.productId) {
+          Get.snackbar("Product Already at Cart",
+              "${cartProductModel.name} Already at Cart",
+              backgroundColor: Colors.black.withOpacity(.7),
+              colorText: primaryColor,
+              snackPosition: SnackPosition.BOTTOM,
+              duration: const Duration(seconds: 2),
+              dismissDirection: DismissDirection.startToEnd);
+          return;
+        }
+      }
+      var dbHelper = CartDataBaseHelper.db;
+      await dbHelper.insert(cartProductModel);
+      Get.snackbar("Product Added to Cart",
+          "${cartProductModel.name} Have been Added to the cart",
+          backgroundColor: Colors.black.withOpacity(.7),
+          colorText: primaryColor,
+          snackPosition: SnackPosition.BOTTOM,
+          duration: const Duration(seconds: 2),
+          dismissDirection: DismissDirection.startToEnd);
     }
-    var dbHelper = CartDataBaseHelper.db;
-    await dbHelper.insert(cartProductModel);
-    Get.snackbar(
-        "Product Added to Cart",
-        "${cartProductModel.name} Have been Added to the cart",
-        backgroundColor: Colors.black.withOpacity(.7),
-        colorText: primaryColor,
-        snackPosition: SnackPosition.BOTTOM,duration: Duration(seconds: 2),
-      dismissDirection: DismissDirection.startToEnd
-    );
     update();
   }
 }

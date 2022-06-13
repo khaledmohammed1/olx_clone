@@ -10,13 +10,12 @@ import '../core/view_model/cart_view_model.dart';
 import '../model/product_model.dart';
 
 class CartScreen extends StatelessWidget {
-  
   ProductModel? model;
-
-  CartScreen({
-    Key? key,
+  CartScreen({Key? key,
     this.model,
-  }) : super(key: key);
+  }) : super(key: key){
+    CartViewModel();
+  }
 
   //
   //
@@ -48,7 +47,7 @@ class CartScreen extends StatelessWidget {
   //   "assets/images/fruits.png",
   //   "assets/images/fruits.png",
   // ];
-
+  @override
   @override
   Widget build(BuildContext context) {
     return SafeArea(
