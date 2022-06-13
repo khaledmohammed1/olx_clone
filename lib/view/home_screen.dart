@@ -164,109 +164,112 @@ class HomeScreen extends StatelessWidget {
           itemCount: controller.productModel.length,
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) {
-            return GestureDetector(
-              onTap: () {},
-              child: Padding(
-                padding: const EdgeInsets.only(
-                    top: 5.0, bottom: 5.0, left: 5.0, right: 5.0),
-                child: Container(
-                  width: 180,
-                  height: 200,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12.0),
-                      boxShadow: [
-                        BoxShadow(
-                            color: Colors.red.withOpacity(0.05),
-                            spreadRadius: 3.0,
-                            blurRadius: 5.0)
-                      ],
-                      color: Colors.white),
-                  child: Column(
-                    children: [
-                      const SizedBox(
-                        height: 25,
-                      ),
-                      InkWell(
-                        onTap: () {
-                          Get.to(ProductDetail(
-                              model: controller.productModel[index]));
-                        },
-                        child: Container(
-                          height: 120.0,
-                          width: 120.0,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(4),
-                            image: DecorationImage(
-                                image: NetworkImage(
-                                    controller.productModel[index].image),
-                                fit: BoxFit.cover),
-                          ),
+            return Padding(
+              padding: const EdgeInsets.only(
+                  top: 5.0, bottom: 5.0, left: 5.0, right: 5.0),
+              child: Container(
+                width: 170,
+                height: 200,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12.0),
+                    boxShadow: [
+                      BoxShadow(
+                          color: Colors.red.withOpacity(0.05),
+                          spreadRadius: 3.0,
+                          blurRadius: 5.0)
+                    ],
+                    color: Colors.white),
+                child: Column(
+                  children: [
+                    const SizedBox(
+                      height: 25,
+                    ),
+                    InkWell(
+                      onTap: () {
+                        Get.to(ProductDetail(
+                            model: controller.productModel[index]));
+                      },
+                      child: Container(
+                        height: 120.0,
+                        width: 120.0,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(4),
+                          image: DecorationImage(
+                              image: NetworkImage(
+                                  controller.productModel[index].image),
+                              fit: BoxFit.cover),
                         ),
                       ),
-                      const SizedBox(height: 8.0),
-                      Text(
-                        controller.productModel[index].name,
-                        style: TextStyle(
-                            color: Theme.of(context).primaryColor,
-                            fontSize: 16.0,
-                            fontWeight: FontWeight.w500),
-                      ),
-                      const SizedBox(height: 1.5),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                    ),
+                    const SizedBox(height: 8.0),
+                    Text(
+                      controller.productModel[index].name,
+                      style: TextStyle(
+                          color: Theme.of(context).primaryColor,
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.w500),
+                    ),
+                    const SizedBox(height: 1.5),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          controller.productModel[index].price,
+                          style: const TextStyle(
+                              color: Colors.black,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600),
+                        ),
+                        const SizedBox(width: 3),
+                        const Text(
+                          "EGP",
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 12.0,
+                              fontWeight: FontWeight.w400),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 1.5),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          right: 8, bottom: 6, top: 2, left: 6),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          Text(
-                            controller.productModel[index].price,
-                            style: const TextStyle(
+                          const Text(
+                            " Add to cart",
+                            style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 14,
                                 fontWeight: FontWeight.w600),
                           ),
-                          const SizedBox(width: 3),
-                          const Text(
-                            "EGP",
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 12.0,
-                                fontWeight: FontWeight.w400),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 1.5),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            right: 8, bottom: 6, top: 2, left: 6),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            const Text(
-                              " Add to cart",
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w600),
-                            ),
-                            const SizedBox(width: 16),
-                            Container(
-                              width: 26,
-                                  height: 26,
+                          const SizedBox(width: 16),
+                          GestureDetector(
+                            onTap: (){
+                              cartViewModel.addToCart(
+                                  controller.productModel[index]);
+                            },
+                            child: Container(
+                              width: 30,
+                                  height: 30,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(4.0),
                                       color: Theme.of(context).primaryColor),
-                                  child:  IconButton(
-                                    icon:const  Icon(Icons.add,color: Colors.white,size: 26,
-                                  ), onPressed: () {
-                                      cartViewModel.addToCart(
-                                        controller.productModel[index]);
-                                  },
-                                ),
-                              ),
 
-                          ],
-                        ),
+                                  child: const  Icon(Icons.add,color: Colors.white,size: 26,
+                            ),
+
+
+
+                                ),
+                          ),
+
+
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             );

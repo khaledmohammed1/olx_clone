@@ -65,7 +65,7 @@ class ControllScreen extends GetWidget<AuthViewModel> {
             icon: SizedBox(
                 height: 26,
                 width: 26,
-                child: Image.asset("assets/images/profile.png")),
+                child: Image.asset("assets/images/pr.png")),
             label: "",
 
             activeIcon: const Padding(
