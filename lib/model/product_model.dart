@@ -54,9 +54,9 @@
 import 'dart:convert';
 
 
-ProductModel categoryModelFromJson(String str) => ProductModel.fromJson(json.decode(str));
+ProductModel productModelFromJson(String str) => ProductModel.fromJson(json.decode(str));
 
-String categoryModelToJson(ProductModel data) => json.encode(data.toJson());
+String productModelToJson(ProductModel data) => json.encode(data.toJson());
 
 class ProductModel {
   ProductModel({

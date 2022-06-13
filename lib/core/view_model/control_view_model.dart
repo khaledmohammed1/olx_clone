@@ -6,7 +6,7 @@ import '../../view/home_screen.dart';
 import '../../view/profile_screen.dart';
 
 class ControlViewModel extends GetxController{
-  Widget _currentScreen =  const HomeScreen();
+  Widget _currentScreen =  HomeScreen();
   int _navigatorValue = 0;
 
   get navigatorValue => _navigatorValue;
@@ -15,10 +15,10 @@ class ControlViewModel extends GetxController{
     _navigatorValue = selectedValue;
     switch (selectedValue){
       case 0 :{
-        _currentScreen =  const HomeScreen();
+        _currentScreen =  HomeScreen();
         break;
       }case 1 :{
-      _currentScreen =   CartScreen();
+      _currentScreen =  CartScreen();
       break;
     }case 2 :{
       _currentScreen = const ProfileScreen();

@@ -1,33 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shopping_app/model/product_model.dart';
 
-import '../../model/cart_porduct_model.dart';
-import '../services/database/cart_database_helper.dart';
+import '../../constance.dart';
 
 class CartViewModel extends GetxController {
-  //
-  // ValueNotifier<bool> get loading => _loading;
-  // ValueNotifier<bool> _loading = ValueNotifier(false);
-  // List<CartProductModel> _cartProductModel = [];
-  // List<CartProductModel> get cartProductModel => _cartProductModel;
-  //
-  // CartViewModel(){
-  //   getAllProduct();
-  // }
-  //
-  // addProduct(CartProductModel cartProductModel) async {
-  //   var dbHelper = CartDataBaseHelper.db;
-  //   await dbHelper.insert(cartProductModel);
-  //   update();
-  // }
-  //
-  // getAllProduct() async {
-  //   _loading.value = true;
-  //   var dbHelper = CartDataBaseHelper.db;
-  //   _cartProductModel = await dbHelper.getAllProduct();
-  //   print(cartProductModel.length);
-  //
-  //   _loading.value = false;
-  //   update();
-  // }
+  var cartItems = <ProductModel>[].obs;
+
+  double get totalPrice =>
+      cartItems.fold(0, (sum, item) => sum + int.parse(item.price));
+
+  addToCart(ProductModel productModel) {
+    cartItems.add(productModel);
+    Get.snackbar(
+      "Product Added to Cart",
+      "${productModel.name} Have been Added to the cart",
+      backgroundColor: Colors.transparent,
+      colorText: primaryColor,
+      snackPosition: SnackPosition.BOTTOM
+    );
+  }
 }

@@ -2,18 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shopping_app/constance.dart';
 import 'package:shopping_app/core/view_model/home_view_model.dart';
-import 'package:shopping_app/view/widgets/products_details.dart';
+import 'package:shopping_app/view/products_details_screen.dart';
 
-import '../core/view_model/control_view_model.dart';
+import '../core/view_model/cart_view_model.dart';
 
 // ignore: must_be_immutable
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  CartViewModel cartViewModel = Get.put(CartViewModel());
+  HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<HomeViewModel>(
-        init: Get.put(HomeViewModel()),
+      init: Get.put(HomeViewModel()),
       builder: (controller) => controller.loading.value
           ? const Center(
               child: CircularProgressIndicator(
@@ -82,7 +83,6 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
               ),
-
             ),
     );
   }
@@ -155,11 +155,10 @@ class HomeScreen extends StatelessWidget {
   }
 
   Widget _listViewProducts() {
-    bool isFavorite = false;
-
     return SizedBox(
       height: 240,
       child: GetBuilder<HomeViewModel>(
+        init: HomeViewModel(),
         builder: (controller) => ListView.separated(
           physics: const BouncingScrollPhysics(),
           itemCount: controller.productModel.length,
@@ -189,7 +188,8 @@ class HomeScreen extends StatelessWidget {
                       ),
                       InkWell(
                         onTap: () {
-                          Get.to(ProductDetail(model: controller.productModel[index]));
+                          Get.to(ProductDetail(
+                              model: controller.productModel[index]));
                         },
                         child: Container(
                           height: 120.0,
@@ -248,15 +248,20 @@ class HomeScreen extends StatelessWidget {
                             ),
                             const SizedBox(width: 16),
                             Container(
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(4.0),
-                                  color: Theme.of(context).primaryColor),
-                              child: const Icon(
-                                Icons.add,
-                                color: Colors.white,
-                                size: 26,
+                              width: 26,
+                                  height: 26,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(4.0),
+                                      color: Theme.of(context).primaryColor),
+                                  child:  IconButton(
+                                    icon:const  Icon(Icons.add,color: Colors.white,size: 26,
+                                  ), onPressed: () {
+                                      cartViewModel.addToCart(
+                                        controller.productModel[index]);
+                                  },
+                                ),
                               ),
-                            )
+
                           ],
                         ),
                       ),

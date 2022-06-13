@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shopping_app/view/widgets/custom_button.dart';
-
-import '../../model/product_model.dart';
+import '../core/view_model/cart_view_model.dart';
+import '../model/product_model.dart';
 
 // ignore: must_be_immutable
 class ProductDetail extends StatelessWidget {
+  final cartController = Get.put(CartViewModel());
   ProductModel model;
 
   ProductDetail({
@@ -140,7 +141,9 @@ class ProductDetail extends StatelessWidget {
                 width: MediaQuery.of(context).size.width * .55,
                 child: CustomButton(
                   text: 'add to cart',
-                  onPressed: () {},
+                  onPressed: () {
+                    cartController.addToCart(model);
+                  },
                 ),
               ),
             ],
