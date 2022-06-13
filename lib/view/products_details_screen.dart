@@ -2,19 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shopping_app/model/cart_product_model.dart';
 import 'package:shopping_app/view/widgets/custom_button.dart';
-
 import '../core/view_model/cart_view_model.dart';
 import '../model/product_model.dart';
 
 // ignore: must_be_immutable
 class ProductDetail extends StatelessWidget {
   final cartController = Get.put(CartViewModel());
-  ProductModel model;
 
+  ProductModel model;
   ProductDetail({
     Key? key,
     required this.model,
-  }) : super(key: key);
+  }) : super(key: key){
+  }
 
   @override
   Widget build(BuildContext context) {

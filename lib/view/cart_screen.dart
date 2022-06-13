@@ -112,43 +112,54 @@ class CartScreen extends StatelessWidget {
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Container(
+                                    GestureDetector(
+                                      child: Container(
+                                          width: 30,
+                                          height: 35,
+                                          decoration: BoxDecoration(
+                                            color: primaryColor.withOpacity(.2),
+                                            borderRadius: BorderRadius.circular(8),
+                                          ),
+                                          child: const Icon(
+                                            Icons.add,
+                                            size: 30,
+                                            color: Colors.black,
+                                          ),
+                                      ),
+                                      onTap: (){
+                                        controller.increaseQuantity(index);
+                                      },
+                                    ),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    CustomText(
+                                        alignment: Alignment.center,
+                                        text: controller.cartProductModel[index].quantity.toString(),
+                                        fontSize: 20),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    GestureDetector(
+                                      child: Container(
                                         width: 30,
                                         height: 35,
                                         decoration: BoxDecoration(
                                           color: primaryColor.withOpacity(.2),
                                           borderRadius: BorderRadius.circular(8),
                                         ),
-                                        child: const Icon(
-                                          Icons.add,
-                                          size: 30,
-                                          color: Colors.black,
-                                        )),
-                                    const SizedBox(
-                                      width: 10,
-                                    ),
-                                    const CustomText(
-                                        alignment: Alignment.center,
-                                        text: "1",
-                                        fontSize: 20),
-                                    const SizedBox(
-                                      width: 10,
-                                    ),
-                                    Container(
-                                      width: 30,
-                                      height: 35,
-                                      decoration: BoxDecoration(
-                                        color: primaryColor.withOpacity(.2),
-                                        borderRadius: BorderRadius.circular(8),
-                                      ),
-                                      child: SizedBox(
-                                        height: 5,
-                                        width: 5,
-                                        child: Image.asset(
-                                          "assets/images/minus.png",
-                                          fit: BoxFit.fill,
+                                        child: SizedBox(
+                                          height: 5,
+                                          width: 5,
+                                          child: Image.asset(
+                                            "assets/images/minus.png",
+                                            fit: BoxFit.fill,
+                                          ),
                                         ),
                                       ),
+                                      onTap: (){
+                                        controller.decreaseQuantity(index);
+                                      },
                                     ),
                                   ],
                                 ),
@@ -191,13 +202,15 @@ class CartScreen extends StatelessWidget {
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
-                          Text(
-                            "price",
-                            // controller.totalPrice.toString(),
-                            style: TextStyle(
-                                color: Theme.of(context).primaryColor,
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600),
+                          GetBuilder<CartViewModel>(
+                            init:CartViewModel(),
+                            builder:(controller)=> Text(
+                              controller.totalPrice.toString(),
+                              style: TextStyle(
+                                  color: Theme.of(context).primaryColor,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w600),
+                            ),
                           ),
                           const SizedBox(width: 3),
                           const Text(

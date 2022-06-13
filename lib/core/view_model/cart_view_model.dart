@@ -28,6 +28,9 @@ class CartViewModel extends GetxController {
 
   List<CartProductModel> get cartProductModel => _cartProductModel;
 
+  double get totalPrice => _totalPrice;
+  double _totalPrice = 0.0;
+
   CartViewModel() {
     getAllProduct();
   }
@@ -38,36 +41,54 @@ class CartViewModel extends GetxController {
     _cartProductModel = await dbHelper.getAllProduct();
     print(_cartProductModel.length);
     _loading.value = false;
+    getTotalPrice();
     update();
   }
 
   addProduct(CartProductModel cartProductModel) async {
-    if (_cartProductModel.isEmpty) {
-      var dbHelper = CartDataBaseHelper.db;
-      await dbHelper.insert(cartProductModel);
-    } else {
-      for (int i = 0; i < _cartProductModel.length; i++) {
-        if (_cartProductModel[i].productId == cartProductModel.productId) {
-          Get.snackbar("Product Already at Cart",
-              "${cartProductModel.name} Already at Cart",
-              backgroundColor: Colors.black.withOpacity(.7),
-              colorText: primaryColor,
-              snackPosition: SnackPosition.BOTTOM,
-              duration: const Duration(seconds: 2),
-              dismissDirection: DismissDirection.startToEnd);
-          return;
-        }
+    for (int i = 0; i < _cartProductModel.length; i++) {
+      if (_cartProductModel[i].productId == cartProductModel.productId) {
+        Get.snackbar("Product Already at Cart",
+            "${cartProductModel.name} Already at Cart",
+            backgroundColor: Colors.black.withOpacity(.7),
+            colorText: Colors.red,
+            snackPosition: SnackPosition.BOTTOM,
+            duration: const Duration(seconds: 2),
+            dismissDirection: DismissDirection.startToEnd);
+        return;
       }
-      var dbHelper = CartDataBaseHelper.db;
-      await dbHelper.insert(cartProductModel);
-      Get.snackbar("Product Added to Cart",
-          "${cartProductModel.name} Have been Added to the cart",
-          backgroundColor: Colors.black.withOpacity(.7),
-          colorText: primaryColor,
-          snackPosition: SnackPosition.BOTTOM,
-          duration: const Duration(seconds: 2),
-          dismissDirection: DismissDirection.startToEnd);
     }
+    var dbHelper = CartDataBaseHelper.db;
+    await dbHelper.insert(cartProductModel);
+    _cartProductModel.add(cartProductModel);
+    _totalPrice += double.parse(cartProductModel.price) *
+        cartProductModel.quantity;
+    Get.snackbar("Product Added to Cart",
+        "${cartProductModel.name} Have been Added to the cart",
+        backgroundColor: Colors.black.withOpacity(.7),
+        colorText: primaryColor,
+        snackPosition: SnackPosition.BOTTOM,
+        duration: const Duration(seconds: 2),
+        dismissDirection: DismissDirection.startToEnd);
+    update();
+  }
+
+  getTotalPrice() {
+    for (int i = 0; i < _cartProductModel.length; i++) {
+      _totalPrice += double.parse(_cartProductModel[i].price) *
+          _cartProductModel[i].quantity;
+      update();
+    }
+  }
+
+  increaseQuantity(int index){
+    _cartProductModel[index].quantity++;
+    _totalPrice += double.parse(_cartProductModel[index].price);
+    update();
+  }
+  decreaseQuantity(int index){
+    _cartProductModel[index].quantity--;
+    _totalPrice -= double.parse(_cartProductModel[index].price);
     update();
   }
 }
