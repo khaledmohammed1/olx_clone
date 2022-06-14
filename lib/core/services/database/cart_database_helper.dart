@@ -1,5 +1,6 @@
 import 'package:path/path.dart';
 import 'package:shopping_app/model/cart_product_model.dart';
+import 'package:shopping_app/model/product_model.dart';
 import 'package:sqflite/sqflite.dart';
 
 import '../../../constance.dart';
@@ -37,9 +38,10 @@ class CartDataBaseHelper {
   Future<List<CartProductModel>> getAllProduct() async {
     var dbClient = await database;
     List<Map> maps = await dbClient.query(tableCartProduct);
-    List<CartProductModel>  list = maps.isNotEmpty ?
-        maps.map((product) => CartProductModel.fromJson(product as Map<String,dynamic>)).toList():
-        [];
+    List<CartProductModel> list = maps.isNotEmpty ?
+    maps.map((product) =>
+        CartProductModel.fromJson(product as Map<String, dynamic>)).toList() :
+    [];
     return list;
   }
 
@@ -47,5 +49,10 @@ class CartDataBaseHelper {
     var dbClient = await database;
     await dbClient.insert(tableCartProduct, model.toJson(),
         conflictAlgorithm: ConflictAlgorithm.replace);
+  }
+
+  updateProduct(CartProductModel model) async {
+    var dbClient = await database;
+    return await dbClient.update(tableCartProduct, model.toJson(), where:'$columnProductId = ?',whereArgs: [model.productId]);
   }
 }

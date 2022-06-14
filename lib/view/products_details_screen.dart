@@ -21,7 +21,7 @@ class ProductDetail extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          const SizedBox(height: 25.0),
+          const SizedBox(height: 35.0),
           Stack(
             children: [
               Container(
@@ -163,7 +163,7 @@ class ProductDetail extends StatelessWidget {
             ],
           ),
           const SizedBox(
-            height: 25,
+            height: 20,
           ),
         ],
       ),

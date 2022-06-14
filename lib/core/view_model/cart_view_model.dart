@@ -30,6 +30,7 @@ class CartViewModel extends GetxController {
 
   double get totalPrice => _totalPrice;
   double _totalPrice = 0.0;
+  var dbHelper = CartDataBaseHelper.db;
 
   CartViewModel() {
     getAllProduct();
@@ -37,7 +38,6 @@ class CartViewModel extends GetxController {
 
   getAllProduct() async {
     _loading.value = true;
-    var dbHelper = CartDataBaseHelper.db;
     _cartProductModel = await dbHelper.getAllProduct();
     print(_cartProductModel.length);
     _loading.value = false;
@@ -58,7 +58,7 @@ class CartViewModel extends GetxController {
         return;
       }
     }
-    var dbHelper = CartDataBaseHelper.db;
+
     await dbHelper.insert(cartProductModel);
     _cartProductModel.add(cartProductModel);
     _totalPrice += double.parse(cartProductModel.price) *
@@ -81,14 +81,20 @@ class CartViewModel extends GetxController {
     }
   }
 
-  increaseQuantity(int index){
+  increaseQuantity(int index)async{
     _cartProductModel[index].quantity++;
     _totalPrice += double.parse(_cartProductModel[index].price);
+    await dbHelper.updateProduct(_cartProductModel[index]);
     update();
   }
-  decreaseQuantity(int index){
-    _cartProductModel[index].quantity--;
-    _totalPrice -= double.parse(_cartProductModel[index].price);
-    update();
+  decreaseQuantity(int index)async{
+    if( _cartProductModel[index].quantity > 1) {
+      _cartProductModel[index].quantity--;
+      _totalPrice -= double.parse(_cartProductModel[index].price);
+      await dbHelper.updateProduct(_cartProductModel[index]);
+      update();
+    }else{
+      return;
+    }
   }
 }

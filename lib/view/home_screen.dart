@@ -6,10 +6,12 @@ import 'package:shopping_app/view/products_details_screen.dart';
 
 import '../core/view_model/cart_view_model.dart';
 
+
 // ignore: must_be_immutable
 class HomeScreen extends StatelessWidget {
   CartViewModel cartViewModel = Get.put(CartViewModel());
   HomeScreen({Key? key}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
