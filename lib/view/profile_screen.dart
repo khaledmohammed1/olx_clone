@@ -3,8 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shopping_app/constance.dart';
-import 'package:shopping_app/core/view_model/profile_view_model.dart';
-import 'package:shopping_app/view/auth/login_Screen.dart';
+import 'package:shopping_app/core/controllers/profile_controller.dart';
 import 'package:shopping_app/view/widgets/custom_text.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -12,8 +11,8 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<ProfileViewModel>(
-      init: ProfileViewModel(),
+    return GetBuilder<ProfileController>(
+      init: ProfileController(),
       builder: (controller) => controller.loading.value
           ? const Center(
               child: CircularProgressIndicator(

@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shopping_app/constance.dart';
-import 'package:shopping_app/core/view_model/home_view_model.dart';
+import 'package:shopping_app/core/controllers/home_controller.dart';
 import 'package:shopping_app/view/products_details_screen.dart';
 
-import '../core/view_model/cart_view_model.dart';
+import '../core/controllers/cart_controller.dart';
 
 
 // ignore: must_be_immutable
 class HomeScreen extends StatelessWidget {
-  CartViewModel cartViewModel = Get.put(CartViewModel());
+  CartController cartViewModel = Get.put(CartController());
   HomeScreen({Key? key}) : super(key: key);
 
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<HomeViewModel>(
-      init: Get.put(HomeViewModel()),
+    return GetBuilder<HomeController>(
+      init: Get.put(HomeController()),
       builder: (controller) => controller.loading.value
           ? const Center(
               child: CircularProgressIndicator(
@@ -107,7 +107,7 @@ class HomeScreen extends StatelessWidget {
   }
 
   Widget _listViewCategory() {
-    return GetBuilder<HomeViewModel>(
+    return GetBuilder<HomeController>(
       builder: (controller) => controller.loading.value
           ? const Center(
               child: CircularProgressIndicator(
@@ -159,8 +159,8 @@ class HomeScreen extends StatelessWidget {
   Widget _listViewProducts() {
     return SizedBox(
       height: 240,
-      child: GetBuilder<HomeViewModel>(
-        init: HomeViewModel(),
+      child: GetBuilder<HomeController>(
+        init: HomeController(),
         builder: (controller) => ListView.separated(
           physics: const BouncingScrollPhysics(),
           itemCount: controller.productModel.length,

@@ -5,7 +5,7 @@ import '../../view/cart_screen.dart';
 import '../../view/home_screen.dart';
 import '../../view/profile_screen.dart';
 
-class ControlViewModel extends GetxController{
+class ControllController extends GetxController{
   Widget _currentScreen =  HomeScreen();
   int _navigatorValue = 0;
 

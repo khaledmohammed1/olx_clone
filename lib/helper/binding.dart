@@ -1,23 +1,22 @@
 import 'package:get/get.dart';
-import 'package:shopping_app/core/view_model/cart_view_model.dart';
-import 'package:shopping_app/core/view_model/control_view_model.dart';
-import 'package:shopping_app/core/view_model/profile_view_model.dart';
+import 'package:shopping_app/core/controllers/cart_controller.dart';
+import 'package:shopping_app/core/controllers/controll_controller.dart';
+import 'package:shopping_app/core/controllers/profile_controller.dart';
 import 'package:shopping_app/helper/local_storage_data.dart';
-
-import '../core/view_model/auth_view_model.dart';
-import '../core/view_model/home_view_model.dart';
+import '../core/controllers/auth_controller.dart';
+import '../core/controllers/home_controller.dart';
 
 
 class Binding extends Bindings{
   @override
   void dependencies() {
     // TODO: implement dependencies
-    Get.lazyPut(() => AuthViewModel());
-    Get.lazyPut(() => ControlViewModel());
-    Get.lazyPut(() => HomeViewModel());
-    Get.lazyPut(() => CartViewModel());
+    Get.lazyPut(() => AuthController());
+    Get.lazyPut(() => ControllController());
+    Get.lazyPut(() => HomeController());
+    Get.lazyPut(() => CartController());
     Get.lazyPut(() => LocalStorageData());
-    Get.lazyPut(() => ProfileViewModel());
+    Get.lazyPut(() => ProfileController());
 
   }
 

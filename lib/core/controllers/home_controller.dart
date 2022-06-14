@@ -5,7 +5,7 @@ import '../../model/category_model.dart';
 import '../../model/product_model.dart';
 import '../services/home_services.dart';
 
-class HomeViewModel extends GetxController {
+class HomeController extends GetxController {
   ValueNotifier<bool> get loading => _loading;
   final ValueNotifier<bool> _loading = ValueNotifier(false);
 
@@ -15,7 +15,7 @@ class HomeViewModel extends GetxController {
   List<ProductModel> get productModel => _productModel;
   final List<ProductModel> _productModel = [];
   //
-   HomeViewModel() {
+   HomeController() {
      getCategory();
     getProducts();
    }

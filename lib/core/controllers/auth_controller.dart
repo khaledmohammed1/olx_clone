@@ -8,7 +8,7 @@ import 'package:shopping_app/model/user_model.dart';
 import 'package:shopping_app/view/auth/login_Screen.dart';
 import 'package:shopping_app/view/control_screen.dart';
 
-class AuthViewModel extends GetxController {
+class AuthController extends GetxController {
   final GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ['email']);
   final FirebaseAuth _auth = FirebaseAuth.instance;
 

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:shopping_app/core/view_model/auth_view_model.dart';
+import 'package:shopping_app/core/controllers/auth_controller.dart';
 import '../constance.dart';
-import '../core/view_model/control_view_model.dart';
+import '../core/controllers/controll_controller.dart';
 import 'auth/login_Screen.dart';
 
 
 // ignore: must_be_immutable
-class ControllScreen extends GetWidget<AuthViewModel> {
+class ControllScreen extends GetWidget<AuthController> {
    const ControllScreen({Key? key}) : super(key: key);
 
   @override
@@ -15,10 +15,10 @@ class ControllScreen extends GetWidget<AuthViewModel> {
     return Obx(() {
 
       return
-        Get.find<AuthViewModel>().user == null?
+        Get.find<AuthController>().user == null?
            LoginScreen():
-           GetBuilder<ControlViewModel>(
-              init: Get.put(ControlViewModel()),
+           GetBuilder<ControllController>(
+              init: Get.put(ControllController()),
             builder:(controller)=> Scaffold(
               bottomNavigationBar: _bottomNavigationBar(),
               body: controller.currentScreen,
@@ -28,8 +28,8 @@ class ControllScreen extends GetWidget<AuthViewModel> {
   }
 
   Widget _bottomNavigationBar() {
-    return GetBuilder<ControlViewModel>(
-      init: Get.put(ControlViewModel()),
+    return GetBuilder<ControllController>(
+      init: Get.put(ControllController()),
       builder: (controller)=>BottomNavigationBar(
         elevation: 0,
         items: [

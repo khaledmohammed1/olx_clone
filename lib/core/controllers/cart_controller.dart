@@ -5,7 +5,7 @@ import 'package:shopping_app/model/cart_product_model.dart';
 
 import '../../constance.dart';
 
-class CartViewModel extends GetxController {
+class CartController extends GetxController {
   // var cartItems = <ProductModel>[].obs;
   //
   // double get totalPrice =>
@@ -32,7 +32,7 @@ class CartViewModel extends GetxController {
   double _totalPrice = 0.0;
   var dbHelper = CartDataBaseHelper.db;
 
-  CartViewModel() {
+  CartController() {
     getAllProduct();
   }
 

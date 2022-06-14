@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shopping_app/view/auth/login_Screen.dart';
-import '../../core/view_model/auth_view_model.dart';
+import '../../core/controllers/auth_controller.dart';
 import '../widgets/custom_button.dart';
 import '../widgets/custom_text.dart';
 import '../widgets/custom_text_fom_field.dart';
 
-class RegisterScreen extends GetWidget<AuthViewModel> {
+class RegisterScreen extends GetWidget<AuthController> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
    RegisterScreen({Key? key}) : super(key: key);

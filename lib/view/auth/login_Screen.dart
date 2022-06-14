@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shopping_app/constance.dart';
-import 'package:shopping_app/core/view_model/auth_view_model.dart';
+import 'package:shopping_app/core/controllers/auth_controller.dart';
 import 'package:shopping_app/view/auth/register_Screen.dart';
 import 'package:shopping_app/view/widgets/custom_button_social.dart';
 
@@ -10,7 +10,7 @@ import '../widgets/custom_button.dart';
 import '../widgets/custom_text.dart';
 import '../widgets/custom_text_fom_field.dart';
 
-class LoginScreen extends GetWidget<AuthViewModel> {
+class LoginScreen extends GetWidget<AuthController> {
   LoginScreen({Key? key}) : super(key: key);
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   @override

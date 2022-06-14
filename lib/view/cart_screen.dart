@@ -6,7 +6,7 @@ import 'package:shopping_app/constance.dart';
 import 'package:shopping_app/view/widgets/custom_button.dart';
 import 'package:shopping_app/view/widgets/custom_text.dart';
 
-import '../core/view_model/cart_view_model.dart';
+import '../core/controllers/cart_controller.dart';
 import '../model/product_model.dart';
 
 class CartScreen extends StatelessWidget {
@@ -16,13 +16,13 @@ class CartScreen extends StatelessWidget {
     Key? key,
     this.model,
   }) : super(key: key) {
-    CartViewModel();
+    CartController();
   }
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<CartViewModel>(
-      init: Get.put(CartViewModel()),
+    return GetBuilder<CartController>(
+      init: Get.put(CartController()),
       builder: (controller) => SafeArea(
         child: controller.cartProductModel.isEmpty
             ? Column(
@@ -46,7 +46,7 @@ class CartScreen extends StatelessWidget {
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.only(left: 10),
-                      child: GetBuilder<CartViewModel>(
+                      child: GetBuilder<CartController>(
                         builder: (controller) => ListView.separated(
                           physics: const BouncingScrollPhysics(),
                           itemBuilder: (context, index) {
@@ -226,8 +226,8 @@ class CartScreen extends StatelessWidget {
                             Row(
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
-                                GetBuilder<CartViewModel>(
-                                  init: CartViewModel(),
+                                GetBuilder<CartController>(
+                                  init: CartController(),
                                   builder: (controller) => Text(
                                     controller.totalPrice.toString(),
                                     style: TextStyle(
@@ -252,7 +252,8 @@ class CartScreen extends StatelessWidget {
                           padding: const EdgeInsets.only(right: 20, bottom: 2),
                           width: MediaQuery.of(context).size.width * .6,
                           child:
-                              CustomButton(text: "CheckOut", onPressed: () {}),
+                              CustomButton(text: "CheckOut", onPressed: () {
+                              }),
                         ),
                       ],
                     ),
