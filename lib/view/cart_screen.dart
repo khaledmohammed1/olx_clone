@@ -176,6 +176,20 @@ class CartScreen extends StatelessWidget {
                                       ],
                                     ),
                                   ),
+                                  GestureDetector(
+                                    onTap: () {
+                                      controller.deleteProduct(
+                                          controller.cartProductModel[index]);
+                                    },
+                                    child: const Padding(
+                                      padding: EdgeInsets.only(left: 100),
+                                      child: Icon(
+                                        Icons.delete,
+                                        color: Colors.red,
+                                        size: 40,
+                                      ),
+                                    ),
+                                  ),
                                 ],
                               ),
                             );

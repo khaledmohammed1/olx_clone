@@ -1,6 +1,5 @@
 import 'package:path/path.dart';
 import 'package:shopping_app/model/cart_product_model.dart';
-import 'package:shopping_app/model/product_model.dart';
 import 'package:sqflite/sqflite.dart';
 
 import '../../../constance.dart';
@@ -54,5 +53,10 @@ class CartDataBaseHelper {
   updateProduct(CartProductModel model) async {
     var dbClient = await database;
     return await dbClient.update(tableCartProduct, model.toJson(), where:'$columnProductId = ?',whereArgs: [model.productId]);
+  }
+
+  deleteProduct(CartProductModel model) async{
+    var dbClient = await database;
+    await dbClient.delete(tableCartProduct,where:'$columnProductId = ?',whereArgs: [model.productId]);
   }
 }

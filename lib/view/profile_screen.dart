@@ -120,7 +120,6 @@ class ProfileScreen extends StatelessWidget {
                       GestureDetector(
                         onTap: () {
                           controller.signOut();
-                          Get.offAll(LoginScreen());
                         },
                         child: ProfileListTile(
                           icon: const Icon(

@@ -61,8 +61,8 @@ class CartViewModel extends GetxController {
 
     await dbHelper.insert(cartProductModel);
     _cartProductModel.add(cartProductModel);
-    _totalPrice += double.parse(cartProductModel.price) *
-        cartProductModel.quantity;
+    _totalPrice +=
+        double.parse(cartProductModel.price) * cartProductModel.quantity;
     Get.snackbar("Product Added to Cart",
         "${cartProductModel.name} Have been Added to the cart",
         backgroundColor: Colors.black.withOpacity(.7),
@@ -70,6 +70,14 @@ class CartViewModel extends GetxController {
         snackPosition: SnackPosition.BOTTOM,
         duration: const Duration(seconds: 2),
         dismissDirection: DismissDirection.startToEnd);
+    update();
+  }
+
+  deleteProduct(CartProductModel cartProductModel) async {
+    await dbHelper.deleteProduct(cartProductModel);
+    _cartProductModel.remove(cartProductModel);
+     _totalPrice = 0.0;
+    getTotalPrice();
     update();
   }
 
@@ -81,19 +89,20 @@ class CartViewModel extends GetxController {
     }
   }
 
-  increaseQuantity(int index)async{
+  increaseQuantity(int index) async {
     _cartProductModel[index].quantity++;
     _totalPrice += double.parse(_cartProductModel[index].price);
     await dbHelper.updateProduct(_cartProductModel[index]);
     update();
   }
-  decreaseQuantity(int index)async{
-    if( _cartProductModel[index].quantity > 1) {
+
+  decreaseQuantity(int index) async {
+    if (_cartProductModel[index].quantity > 1) {
       _cartProductModel[index].quantity--;
       _totalPrice -= double.parse(_cartProductModel[index].price);
       await dbHelper.updateProduct(_cartProductModel[index]);
       update();
-    }else{
+    } else {
       return;
     }
   }
