@@ -98,6 +98,7 @@ flutter:
   # see https://flutter.dev/custom-fonts/#from-packages
   assets:
     - assets/images/bag.png
+    - assets/images/empty-cart.png
     - assets/images/facebook logo.jpg
     - assets/images/fruits.png
     - assets/images/google logo.png
