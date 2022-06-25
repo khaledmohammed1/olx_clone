@@ -1,10 +1,10 @@
 import 'package:get/get.dart';
-import 'package:shopping_app/core/controllers/cart_controller.dart';
-import 'package:shopping_app/core/controllers/controll_controller.dart';
-import 'package:shopping_app/core/controllers/profile_controller.dart';
+import 'package:shopping_app/controllers/cart_controller.dart';
+import 'package:shopping_app/controllers/controll_controller.dart';
+import 'package:shopping_app/controllers/profile_controller.dart';
 import 'package:shopping_app/helper/local_storage_data.dart';
-import '../core/controllers/auth_controller.dart';
-import '../core/controllers/home_controller.dart';
+import '../controllers/auth_controller.dart';
+import '../controllers/home_controller.dart';
 
 
 class Binding extends Bindings{

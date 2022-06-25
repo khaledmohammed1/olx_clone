@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shopping_app/constance.dart';
 import 'helper/binding.dart';
-import 'view/control_screen.dart';
+import 'screens/control_screen.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primaryColor: primaryColor,
-          primarySwatch: MaterialColor(0xff00C569,color),
+          primarySwatch: MaterialColor(0xffFF6600,color),
       ),
       home:  const ControllScreen()
     );

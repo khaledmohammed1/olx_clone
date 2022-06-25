@@ -2,11 +2,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:shopping_app/core/services/firestore_user.dart';
+import 'package:shopping_app/services/firestore_user.dart';
 import 'package:shopping_app/helper/local_storage_data.dart';
 import 'package:shopping_app/model/user_model.dart';
-import 'package:shopping_app/view/auth/login_Screen.dart';
-import 'package:shopping_app/view/control_screen.dart';
+import 'package:shopping_app/screens/auth/login_Screen.dart';
+import 'package:shopping_app/screens/control_screen.dart';
 
 class AuthController extends GetxController {
   final GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ['email']);

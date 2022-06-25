@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:shopping_app/core/controllers/auth_controller.dart';
+import 'package:shopping_app/controllers/auth_controller.dart';
 import '../constance.dart';
-import '../core/controllers/controll_controller.dart';
+import '../controllers/auth_controller.dart';
+import '../controllers/controll_controller.dart';
 import 'auth/login_Screen.dart';
 
 
@@ -63,8 +64,8 @@ class ControllScreen extends GetWidget<AuthController> {
           ),
           BottomNavigationBarItem(
             icon: SizedBox(
-                height: 26,
-                width: 26,
+                height: 24,
+                width: 24,
                 child: Image.asset("assets/images/pr.png")),
             label: "",
 

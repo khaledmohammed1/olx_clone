@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:shopping_app/view/auth/login_Screen.dart';
-import '../../core/controllers/auth_controller.dart';
+import 'package:shopping_app/screens/auth/login_Screen.dart';
+import '../../controllers/auth_controller.dart';
 import '../widgets/custom_button.dart';
 import '../widgets/custom_text.dart';
 import '../widgets/custom_text_fom_field.dart';
