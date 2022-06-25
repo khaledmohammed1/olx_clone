@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:725841217499:android:e7a90615d85e0de0ae09fe",
         "android_client_info": {
-          "package_name": "com.example.shopping_app"
+          "package_name": "com.example.olx_clone"
         }
       },
       "oauth_client": [
@@ -17,7 +17,7 @@
           "client_id": "725841217499-7rlqgqn8vg9nvueumfev0rf3h5jv1aob.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.shopping_app",
+            "package_name": "com.example.olx_clone",
             "certificate_hash": "df716446c79f2eed8402b62f514a8e37090bd574"
           }
         },

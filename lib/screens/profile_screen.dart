@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shopping_app/controllers/profile_controller.dart';
+import 'package:shopping_app/screens/widgets/custom_button.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -11,9 +12,20 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<ProfileController>(
       init: ProfileController(),
-      builder: (controller) => const SafeArea(
+      builder: (controller) => SafeArea(
         child: Scaffold(
-          body: Center(child: Text("Profile Screen")),
+          body: Center(
+            child: SizedBox(
+              width: 150,
+              height: 60,
+              child: CustomButton(
+                text: 'Sign out',
+                onPressed: () {
+                  controller.signOut();
+                },
+              ),
+            ),
+          ),
         ),
       ),
     );

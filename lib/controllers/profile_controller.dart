@@ -9,11 +9,6 @@ class ProfileController extends GetxController {
   ValueNotifier<bool> get loading => _loading;
   ValueNotifier<bool> _loading = ValueNotifier(false);
 
-  @override
-  void onInit() async {
-    super.onInit();
-    await getCurrentUser();
-  }
 
   final LocalStorageData localStorageData = Get.find();
 
