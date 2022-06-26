@@ -2,8 +2,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shopping_app/constance.dart';
+import 'package:shopping_app/screens/splash_screen.dart';
 import 'helper/binding.dart';
-import 'screens/control_screen.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
           primaryColor: primaryColor,
           primarySwatch: MaterialColor(0xffFF6600,color),
       ),
-      home:  const ControllScreen()
+      home:  const SplashScreen()
     );
   }
 }

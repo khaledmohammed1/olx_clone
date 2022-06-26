@@ -43,6 +43,7 @@ dependencies:
   path: 1.8.1
   shared_preferences: ^2.0.15
   status_change: ^2.0.0
+  easy_splash_screen: ^1.0.3
 
 
 dev_dependencies:
@@ -105,6 +106,7 @@ flutter:
     - assets/images/google logo.png
     - assets/images/heart.png
     - assets/images/help-desk.png
+    - assets/images/location.jpg
     - assets/images/minus.png
     - assets/images/pr.png
     - assets/images/profile.png

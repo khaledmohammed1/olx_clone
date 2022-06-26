@@ -12,7 +12,7 @@ class AuthController extends GetxController {
   final GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ['email']);
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  late String email, password, name;
+  late String email, password, name, phoneNumber;
 
   final Rxn<User> _user = Rxn<User>();
 
@@ -55,7 +55,8 @@ class AuthController extends GetxController {
         userId: user.user!.uid,
         email: user.user!.email,
         name: user.user!.displayName,
-        pic: '',
+        pic: 'default',
+        phoneNumber: '',
       ));
       Get.offAll(const ControllScreen());
     });
@@ -106,8 +107,9 @@ class AuthController extends GetxController {
     UserModel userModel = UserModel(
       userId: user.user!.uid,
       email: user.user!.email,
-      name: name == null ? user.user!.displayName : name,
+      name: name,
       pic: 'default',
+      phoneNumber:phoneNumber,
     );
     await FireStoreUser().addUserToFireStore(userModel);
     setUser(userModel);

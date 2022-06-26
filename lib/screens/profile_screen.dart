@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 import 'package:shopping_app/controllers/profile_controller.dart';
 import 'package:shopping_app/screens/widgets/custom_button.dart';
 
+import 'location_screen.dart';
+
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);
 
@@ -15,15 +17,31 @@ class ProfileScreen extends StatelessWidget {
       builder: (controller) => SafeArea(
         child: Scaffold(
           body: Center(
-            child: SizedBox(
-              width: 150,
-              height: 60,
-              child: CustomButton(
-                text: 'Sign out',
-                onPressed: () {
-                  controller.signOut();
-                },
-              ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  width: 150,
+                  height: 60,
+                  child: CustomButton(
+                    text: 'Sign out',
+                    onPressed: () {
+                      controller.signOut();
+                    },
+                  ),
+                ),
+                const SizedBox(height: 10,),
+                SizedBox(
+                  width: 150,
+                  height: 60,
+                  child: CustomButton(
+                    text: 'Get Location',
+                    onPressed: () {
+                      Get.to(const LocationScreen());
+                    },
+                  ),
+                ),
+              ],
             ),
           ),
         ),

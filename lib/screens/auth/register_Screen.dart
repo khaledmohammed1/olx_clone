@@ -50,7 +50,7 @@ class RegisterScreen extends GetWidget<AuthController> {
                   fontSize: 30,
                 ),
                 const SizedBox(
-                  height: 30,
+                  height: 20,
                 ),
                 CustomTextFormField(
                   text: 'Name',
@@ -65,7 +65,22 @@ class RegisterScreen extends GetWidget<AuthController> {
                   },
                 ),
                 const SizedBox(
-                  height: 30,
+                  height: 20,
+                ),CustomTextFormField(
+                  keyBoardType: TextInputType.phone,
+                  text: 'Phone Number',
+                  hint: 'Enter valid phone number',
+                  onSave: (value) {
+                    controller.phoneNumber = value!;
+                  },
+                  validator: (value) {
+                    if (value == null) {
+                      print("ERROR");
+                    }
+                  },
+                ),
+                const SizedBox(
+                  height: 20,
                 ),
                 CustomTextFormField(
                   text: 'Email',
@@ -80,7 +95,7 @@ class RegisterScreen extends GetWidget<AuthController> {
                   },
                 ),
                 const SizedBox(
-                  height: 40,
+                  height: 20,
                 ),
                 CustomTextFormField(
                   text: 'Password',
