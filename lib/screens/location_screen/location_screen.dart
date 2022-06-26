@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:shopping_app/controllers/location_controller.dart';
 import 'package:shopping_app/screens/controll_screen/control_screen.dart';
 
-
 class LocationScreen extends StatelessWidget {
   const LocationScreen({Key? key}) : super(key: key);
 
@@ -36,40 +35,47 @@ class LocationScreen extends StatelessWidget {
           ),
           GetBuilder<LocationController>(
             init: LocationController(),
-            builder:(controller)=> Padding(
+            builder: (controller) => Padding(
               padding: const EdgeInsets.only(left: 15, right: 15, bottom: 10),
               child: Row(
                 children: [
                   Expanded(
-                    child: ElevatedButton.icon(
-                      onPressed: () {
-                        controller.getLocation().then((value){
-                          if(value!= null){
-                            Get.to(const ControllScreen());
-                          }
-                        });
-                      },
-                      icon: const Icon(CupertinoIcons.location_fill),
-                      label: const Padding(
-                        padding: EdgeInsets.only(top: 15, bottom: 15),
-                        child: Text("Around Me"),
-                      ),
-                    ),
+                    child: controller.loading.value
+                        ? const Center(
+                            child: CircularProgressIndicator(),
+                          )
+                        : ElevatedButton.icon(
+                            onPressed: () {
+                              controller.getLocation().then((value) {
+                                if (value != null) {
+                                  print(controller.locationData!.latitude);
+                                  print(controller.locationData!.longitude);
+                                  Get.to(()=>const ControllScreen());
+                                }
+                              });
+                            },
+                            icon: const Icon(CupertinoIcons.location_fill),
+                            label: const Padding(
+                              padding: EdgeInsets.only(top: 15, bottom: 15),
+                              child: Text("Around Me"),
+                            ),
+                          ),
                   ),
                 ],
               ),
             ),
           ),
           TextButton(
-              onPressed: () {},
-              child: const Text(
-                "Set location manually",
-                style: TextStyle(
-                    fontSize: 18,
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    decoration: TextDecoration.underline),
-              )),
+            onPressed: () {},
+            child: const Text(
+              "Set location manually",
+              style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                  decoration: TextDecoration.underline),
+            ),
+          ),
         ],
       ),
     );
