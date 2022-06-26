@@ -3,31 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shopping_app/model/user_model.dart';
-import '../../helper/local_storage_data.dart';
+
+
 
 class ProfileController extends GetxController {
   ValueNotifier<bool> get loading => _loading;
   ValueNotifier<bool> _loading = ValueNotifier(false);
 
-
-  final LocalStorageData localStorageData = Get.find();
-
   UserModel? _usermodel;
 
   UserModel get usermodel => _usermodel!;
 
-  Future<void> signOut() async {
+   signOut() {
     GoogleSignIn().signOut();
     FirebaseAuth.instance.signOut();
-    localStorageData.deleteUserData();
   }
 
-  Future getCurrentUser() async {
-    _loading.value = true;
-    await localStorageData.getUser.then((value) async {
-      _usermodel = value!;
-    });
-    _loading.value = false;
-    update();
-  }
 }

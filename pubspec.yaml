@@ -44,6 +44,7 @@ dependencies:
   shared_preferences: ^2.0.15
   status_change: ^2.0.0
   easy_splash_screen: ^1.0.3
+  location: ^4.4.0
 
 
 dev_dependencies:

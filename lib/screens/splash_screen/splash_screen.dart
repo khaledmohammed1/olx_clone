@@ -2,6 +2,7 @@ import 'package:easy_splash_screen/easy_splash_screen.dart';
 import 'package:shopping_app/screens/controll_screen/control_screen.dart';
 
 import 'package:flutter/material.dart';
+import 'package:shopping_app/screens/location_screen/location_screen.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -18,9 +19,9 @@ class SplashScreen extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        backgroundColor: Colors.grey.shade400,
+        backgroundColor: Colors.white,
         showLoader: false,
-        navigator: const ControllScreen(),
+        navigator: const LocationScreen(),
         durationInSeconds: 2,
       ),
     );

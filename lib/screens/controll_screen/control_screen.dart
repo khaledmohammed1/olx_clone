@@ -15,7 +15,7 @@ class ControllScreen extends GetWidget<AuthController> {
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-
+      Get.put(AuthController());
       return
         Get.find<AuthController>().user == null?
            LoginScreen():

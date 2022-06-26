@@ -30,17 +30,6 @@ class ProfileScreen extends StatelessWidget {
                     },
                   ),
                 ),
-                const SizedBox(height: 10,),
-                SizedBox(
-                  width: 150,
-                  height: 60,
-                  child: CustomButton(
-                    text: 'Get Location',
-                    onPressed: () {
-                      Get.to(const LocationScreen());
-                    },
-                  ),
-                ),
               ],
             ),
           ),

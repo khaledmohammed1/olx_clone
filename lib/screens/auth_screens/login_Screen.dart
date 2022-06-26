@@ -64,6 +64,7 @@ class LoginScreen extends GetWidget<AuthController> {
                     if(value ==null){
                       print("Error");
                     }
+                    return null;
                   },
                 ),
                 const SizedBox(
@@ -80,6 +81,7 @@ class LoginScreen extends GetWidget<AuthController> {
                     if(value ==null){
                       print("Error");
                     }
+                    return null;
                   },
                 ),
                 const SizedBox(
