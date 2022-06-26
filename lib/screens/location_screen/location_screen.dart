@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:shopping_app/controllers/location_controller.dart';
+import 'package:shopping_app/screens/home_screen/home_screen.dart';
 
 class LocationScreen extends StatelessWidget {
   const LocationScreen({Key? key}) : super(key: key);
@@ -30,21 +33,30 @@ class LocationScreen extends StatelessWidget {
           const SizedBox(
             height: 30,
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 15, right: 15, bottom: 10),
-            child: Row(
-              children: [
-                Expanded(
-                  child: ElevatedButton.icon(
-                    onPressed: () {},
-                    icon: const Icon(CupertinoIcons.location_fill),
-                    label: const Padding(
-                      padding: EdgeInsets.only(top: 15, bottom: 15),
-                      child: Text("Around Me"),
+          GetBuilder<LocationController>(
+            init: LocationController(),
+            builder:(controller)=> Padding(
+              padding: const EdgeInsets.only(left: 15, right: 15, bottom: 10),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: ElevatedButton.icon(
+                      onPressed: () {
+                        controller.getLocation().then((value){
+                          if(value!= null){
+                            Get.to(const HomeScreen());
+                          }
+                        });
+                      },
+                      icon: const Icon(CupertinoIcons.location_fill),
+                      label: const Padding(
+                        padding: EdgeInsets.only(top: 15, bottom: 15),
+                        child: Text("Around Me"),
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
           TextButton(

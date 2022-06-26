@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shopping_app/services/firestore_user.dart';
-import 'package:shopping_app/helper/local_storage_data.dart';
 import 'package:shopping_app/model/user_model.dart';
 import 'package:shopping_app/screens/auth_screens/login_Screen.dart';
 import 'package:shopping_app/screens/controll_screen/control_screen.dart';
@@ -18,7 +17,7 @@ class AuthController extends GetxController {
 
   String? get user => _user.value?.email;
 
-  final LocalStorageData localStorageData = Get.find();
+ // final LocalStorageData localStorageData = Get.find();
 
   @override
   void onInit() {
@@ -67,10 +66,7 @@ class AuthController extends GetxController {
       await _auth
           .signInWithEmailAndPassword(email: email, password: password)
           .then((value) async {
-           await FireStoreUser().getCurrentUser(value.user!.uid)
-            .then((value) {
-              setUser(UserModel.fromJson(value!.data() as Map<dynamic,dynamic>));
-           });
+           await FireStoreUser().getCurrentUser(value.user!.uid);
       });
       Get.offAll(const ControllScreen());
     } catch (e) {
@@ -112,10 +108,9 @@ class AuthController extends GetxController {
       phoneNumber:phoneNumber,
     );
     await FireStoreUser().addUserToFireStore(userModel);
-    setUser(userModel);
   }
 
-  void setUser(UserModel userModel) async {
-    await localStorageData.setUser(userModel);
-  }
+  // void setUser(UserModel userModel) async {
+  //  await localStorageData.setUser(userModel);
+  //}
 }
