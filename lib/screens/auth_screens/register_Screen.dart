@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:shopping_app/screens/auth/login_Screen.dart';
+import 'package:shopping_app/screens/auth_screens/login_Screen.dart';
 import '../../controllers/auth_controller.dart';
 import '../widgets/custom_button.dart';
 import '../widgets/custom_text.dart';

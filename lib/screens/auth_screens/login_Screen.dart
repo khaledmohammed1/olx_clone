@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shopping_app/constance.dart';
 import 'package:shopping_app/controllers/auth_controller.dart';
-import 'package:shopping_app/screens/auth/register_Screen.dart';
+import 'package:shopping_app/screens/auth_screens/register_Screen.dart';
 import 'package:shopping_app/screens/widgets/custom_button_social.dart';
 
 import '../widgets/custom_button.dart';

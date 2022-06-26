@@ -2,7 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shopping_app/constance.dart';
-import 'package:shopping_app/screens/splash_screen.dart';
+import 'package:shopping_app/screens/splash_screen/splash_screen.dart';
 import 'helper/binding.dart';
 
 void main() async{

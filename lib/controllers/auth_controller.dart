@@ -5,8 +5,8 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shopping_app/services/firestore_user.dart';
 import 'package:shopping_app/helper/local_storage_data.dart';
 import 'package:shopping_app/model/user_model.dart';
-import 'package:shopping_app/screens/auth/login_Screen.dart';
-import 'package:shopping_app/screens/control_screen.dart';
+import 'package:shopping_app/screens/auth_screens/login_Screen.dart';
+import 'package:shopping_app/screens/controll_screen/control_screen.dart';
 
 class AuthController extends GetxController {
   final GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ['email']);

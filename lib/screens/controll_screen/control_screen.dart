@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shopping_app/controllers/auth_controller.dart';
-import '../constance.dart';
-import '../controllers/auth_controller.dart';
-import '../controllers/controll_controller.dart';
-import 'auth/login_Screen.dart';
+import '../../constance.dart';
+import '../../controllers/auth_controller.dart';
+import '../../controllers/controll_controller.dart';
+import '../auth_screens/login_Screen.dart';
+
 
 
 // ignore: must_be_immutable

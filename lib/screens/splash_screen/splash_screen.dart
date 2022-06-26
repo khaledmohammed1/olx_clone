@@ -1,5 +1,5 @@
 import 'package:easy_splash_screen/easy_splash_screen.dart';
-import 'package:shopping_app/screens/control_screen.dart';
+import 'package:shopping_app/screens/controll_screen/control_screen.dart';
 
 import 'package:flutter/material.dart';
 

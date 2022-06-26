@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../screens/cart_screen.dart';
-import '../../screens/home_screen.dart';
-import '../../screens/profile_screen.dart';
+import '../screens/cart_screen/cart_screen.dart';
+import '../screens/home_screen/home_screen.dart';
+import '../screens/profile_screen/profile_screen.dart';
 
 class ControllController extends GetxController{
   Widget _currentScreen =  HomeScreen();

@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:shopping_app/controllers/profile_controller.dart';
 import 'package:shopping_app/screens/widgets/custom_button.dart';
 
-import 'location_screen.dart';
+import '../location_screen/location_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);
