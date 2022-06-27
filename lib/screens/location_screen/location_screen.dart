@@ -5,15 +5,19 @@ import 'package:shopping_app/controllers/location_controller.dart';
 import 'package:shopping_app/screens/controll_screen/control_screen.dart';
 
 class LocationScreen extends StatelessWidget {
-  const LocationScreen({Key? key}) : super(key: key);
+
+   LocationScreen({Key? key}) : super(key: key){
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Column(
+
         children: [
-          Image.asset("assets/images/location.jpg"),
+          const SizedBox(height: 20,),
+          Image.asset("assets/images/map.png",width: MediaQuery.of(context).size.width*.8,),
           const SizedBox(
             height: 20,
           ),

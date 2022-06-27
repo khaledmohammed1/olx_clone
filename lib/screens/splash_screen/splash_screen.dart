@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:shopping_app/screens/location_screen/location_screen.dart';
 
 class SplashScreen extends StatelessWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+   SplashScreen({Key? key}) : super(key: key){
+    Image.asset("assets/images/location.jpg");
+  }
 
   Widget build(BuildContext context) {
     return SafeArea(
@@ -21,7 +23,7 @@ class SplashScreen extends StatelessWidget {
         ),
         backgroundColor: Colors.white,
         showLoader: false,
-        navigator: const LocationScreen(),
+        navigator:LocationScreen(),
         durationInSeconds: 2,
       ),
     );

@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shopping_app/model/user_model.dart';
 
+import '../screens/location_screen/location_screen.dart';
+
 
 
 class ProfileController extends GetxController {
@@ -17,6 +19,7 @@ class ProfileController extends GetxController {
    signOut() {
     GoogleSignIn().signOut();
     FirebaseAuth.instance.signOut();
+    Get.offAll(()=>LocationScreen());
   }
 
 }
