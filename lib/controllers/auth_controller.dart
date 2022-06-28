@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shopping_app/screens/auth_screens/login_Screen.dart';
-import 'package:shopping_app/screens/controll_screen/control_screen.dart';
 import 'package:shopping_app/screens/location_screen/location_screen.dart';
 import 'package:shopping_app/services/firestore_user.dart';
 import 'package:shopping_app/model/user_model.dart';
