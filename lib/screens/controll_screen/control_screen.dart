@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shopping_app/controllers/auth_controller.dart';
+import 'package:shopping_app/screens/location_screen/location_screen.dart';
 import '../../constance.dart';
 import '../../controllers/auth_controller.dart';
 import '../../controllers/controll_controller.dart';
+import '../../controllers/location_controller.dart';
 import '../auth_screens/login_Screen.dart';
 
 
@@ -16,14 +18,19 @@ class ControllScreen extends GetWidget<AuthController> {
   Widget build(BuildContext context) {
     return Obx(() {
       Get.put(AuthController());
+      Get.put(LocationController());
       return
-        Get.find<AuthController>().user == null?
+        Get.find<AuthController>().user == null ?
            LoginScreen():
            GetBuilder<ControllController>(
               init: Get.put(ControllController()),
-            builder:(controller)=> Scaffold(
-              bottomNavigationBar: _bottomNavigationBar(),
-              body: controller.currentScreen,
+            builder:(controller)=> GetBuilder<LocationController>(
+              init: Get.put(LocationController()),
+              builder:(locationController)=> locationController.address == null ? LocationScreen():
+                  Scaffold(
+                bottomNavigationBar: _bottomNavigationBar(),
+                body:controller.currentScreen,
+              ),
             ),
           );
     });

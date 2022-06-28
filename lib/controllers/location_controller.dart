@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:location/location.dart'as locator;
 import 'package:location/location.dart';
 
 
 class LocationController extends GetxController {
+
+  final box = GetStorage();
   ValueNotifier<bool> get loading => _loading;
   ValueNotifier<bool> _loading = ValueNotifier(false);
-
   locator.Location location = locator.Location();
+
   var address;
 
   late bool _serviceEnabled;

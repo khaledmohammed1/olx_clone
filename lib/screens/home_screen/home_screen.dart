@@ -5,7 +5,7 @@ import '../../controllers/home_controller.dart';
 import '../../controllers/location_controller.dart';
 
 class HomeScreen extends StatelessWidget {
-  HomeScreen({Key? key}) : super(key: key) {}
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

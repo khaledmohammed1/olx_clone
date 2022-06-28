@@ -23,7 +23,7 @@ class SplashScreen extends StatelessWidget {
         ),
         backgroundColor: Colors.white,
         showLoader: false,
-        navigator:LocationScreen(),
+        navigator:const ControllScreen(),
         durationInSeconds: 2,
       ),
     );

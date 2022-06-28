@@ -4,10 +4,13 @@ import 'package:get/get.dart';
 import 'package:shopping_app/constance.dart';
 import 'package:shopping_app/screens/splash_screen/splash_screen.dart';
 import 'helper/binding.dart';
+import 'package:get_storage/get_storage.dart';
+
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
    await Firebase.initializeApp();
+  await GetStorage.init();
    runApp(const MyApp());
 }
 

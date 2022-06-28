@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:shopping_app/screens/auth_screens/login_Screen.dart';
 import 'package:shopping_app/screens/controll_screen/control_screen.dart';
 import 'package:shopping_app/screens/location_screen/location_screen.dart';
 import 'package:shopping_app/services/firestore_user.dart';
@@ -61,8 +62,9 @@ class AuthController extends GetxController {
         name: user.user!.displayName,
         pic: 'default',
         phoneNumber: '',
-      ));
-      Get.offAll(const ControllScreen());
+      )).then((value) async{
+        await Get.offAll(LocationScreen());
+      });
     });
   }
 
@@ -72,8 +74,9 @@ class AuthController extends GetxController {
           .signInWithEmailAndPassword(email: email, password: password)
           .then((value) async {
            await FireStoreUser().getCurrentUser(value.user!.uid);
+           await Get.offAll(LocationScreen());
       });
-      Get.offAll(const ControllScreen());
+
     } catch (e) {
       print(e);
       Get.snackbar(
@@ -91,8 +94,8 @@ class AuthController extends GetxController {
           .createUserWithEmailAndPassword(email: email, password: password)
           .then((user) async {
         saveUser(user);
+        Get.offAll( LoginScreen());
       });
-      Get.offAll(const ControllScreen());
     } catch (e) {
       print(e);
       Get.snackbar(
