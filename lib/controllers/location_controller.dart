@@ -58,8 +58,4 @@ class LocationController extends GetxController {
   }
 
 
-
-
-
-
 }

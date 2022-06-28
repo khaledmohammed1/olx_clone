@@ -5,33 +5,24 @@ import 'package:shopping_app/controllers/location_controller.dart';
 import 'package:shopping_app/screens/controll_screen/control_screen.dart';
 
 class LocationScreen extends StatelessWidget {
-   LocationScreen({Key? key}) : super(key: key);
-
+  const LocationScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-
-      showBottomScreen(context){
-        showModalBottomSheet(
-          context:context,
-          builder:(context){
-            return Column(
-              children: [
-                AppBar()
-              ],
-            );
-          }
-        );
-      }
-
     return GetBuilder<LocationController>(
       init: Get.put(LocationController()),
-      builder:(controller)=> Scaffold(
+      builder: (controller) => Scaffold(
         backgroundColor: Colors.white,
+        resizeToAvoidBottomInset: false,
         body: Column(
           children: [
-            const SizedBox(height: 20,),
-            Image.asset("assets/images/map.png",width: MediaQuery.of(context).size.width*.8,),
+            const SizedBox(
+              height: 20,
+            ),
+            Image.asset(
+              "assets/images/map.png",
+              width: MediaQuery.of(context).size.width * .8,
+            ),
             const SizedBox(
               height: 20,
             ),
@@ -51,55 +42,30 @@ class LocationScreen extends StatelessWidget {
             const SizedBox(
               height: 30,
             ),
-             Padding(
-                padding: const EdgeInsets.only(left: 15, right: 15, bottom: 10),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: controller.loading.value
-                          ? const Center(
-                              child: CircularProgressIndicator(),
-                            )
-                          : ElevatedButton.icon(
-                              onPressed: () {
-                                controller.getLocation().then((value) {
-                                  if (value != null) {
-                                    print(controller.locationData!.latitude);
-                                    print(controller.locationData!.longitude);
-                                    Get.to(()=>const ControllScreen());
-                                  }
-                                });
-                              },
-                              icon: const Icon(CupertinoIcons.location_fill),
-                              label: const Padding(
-                                padding: EdgeInsets.only(top: 15, bottom: 15),
-                                child: Text("Around Me"),
-                              ),
-                            ),
-                    ),
-                  ],
-                ),
-              ),
-
-            InkWell(
-              onTap: (){
-                showBottomScreen(context);
+            ListTile(
+              horizontalTitleGap: 0,
+              onTap: () {
+                controller.getLocation().then((value) {
+                  if (value != null) {
+                    print(controller.locationData!.latitude);
+                    print(controller.locationData!.longitude);
+                    Get.to(() => const ControllScreen());
+                  }
+                });
               },
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  decoration:const  BoxDecoration(
-                    border: Border(bottom: BorderSide(width: 2))
-                  ),
-                  child: const Text(
-                    "Set location manually",
-                    style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                        ),
-                  ),
-                ),
+              leading: Icon(
+                Icons.my_location,
+                color: Theme.of(context).primaryColor,
+              ),
+              title: Text(
+                "Use Current location",
+                style: TextStyle(
+                    color: Theme.of(context).primaryColor,
+                    fontWeight: FontWeight.bold),
+              ),
+              subtitle: const Text(
+                "Enable location",
+                style: TextStyle(fontSize: 12),
               ),
             ),
           ],
@@ -107,6 +73,4 @@ class LocationScreen extends StatelessWidget {
       ),
     );
   }
-
 }
-

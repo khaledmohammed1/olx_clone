@@ -19,20 +19,12 @@ class HomeScreen extends StatelessWidget {
               builder: (locationController) => Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    locationController.locationData!.longitude.toString(),
-                  ),
+
                   const SizedBox(
                     height: 10,
                   ),
                   Text(
-                    locationController.locationData!.latitude.toString(),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    locationController.address.toString(),
+                    locationController.address!.toString(),
                   ),
                 ],
               ),
