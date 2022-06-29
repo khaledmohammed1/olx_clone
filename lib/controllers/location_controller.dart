@@ -54,7 +54,7 @@ class LocationController extends GetxController {
     await placemarkFromCoordinates(locationData.latitude!, locationData.longitude!);
     Placemark place = placeMark[0];
     print(place);
-    address = place;
+    address = place.administrativeArea;
   }
 
 

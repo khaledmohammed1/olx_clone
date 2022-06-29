@@ -31,17 +31,6 @@ class AuthController extends GetxController {
     _user.bindStream(_auth.authStateChanges());
   }
 
-  @override
-  void onReady() {
-    // TODO: implement onReady
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    // TODO: implement onClose
-    super.onClose();
-  }
 
   void googleSignInMethod() async {
     final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
@@ -62,7 +51,7 @@ class AuthController extends GetxController {
         pic: 'default',
         phoneNumber: '',
       )).then((value) async{
-        await Get.offAll(LocationScreen());
+        await Get.offAll(const LocationScreen());
       });
     });
   }
@@ -73,7 +62,7 @@ class AuthController extends GetxController {
           .signInWithEmailAndPassword(email: email, password: password)
           .then((value) async {
            await FireStoreUser().getCurrentUser(value.user!.uid);
-           await Get.offAll(LocationScreen());
+           await Get.offAll(const LocationScreen());
       });
 
     } catch (e) {

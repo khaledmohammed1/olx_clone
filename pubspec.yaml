@@ -49,6 +49,8 @@ dependencies:
   geocoding: ^2.0.4
   get_storage: ^2.0.3
   csc_picker: ^0.2.6
+  flutter_neumorphic: ^3.2.0
+  animated_text_kit: ^4.2.2
 
 
 
