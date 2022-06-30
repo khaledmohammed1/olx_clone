@@ -11,7 +11,7 @@ class BannerWidget extends StatelessWidget {
       child: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height * .27,
-        color: Theme.of(context).primaryColor.withOpacity(.5),
+        color: Theme.of(context).primaryColor,
         child: Padding(
           padding: const EdgeInsets.all(10),
           child: Column(
@@ -76,7 +76,8 @@ class BannerWidget extends StatelessWidget {
 
                       style: const NeumorphicStyle(color: Colors.white,oppositeShadowLightSource: true),
                       child: Image.network(
-                        "https://res.cloudinary.com/kha10led/image/upload/v1656469756/ecommerce/icons8-car-100_qzri0l.png",
+                        "https://res.cloudinary.com/kha10led/image/upload/v1656537187/ecommerce/car_vm3wk2.png",width: MediaQuery.of(context).size.width*.30,
+                        height: MediaQuery.of(context).size.width*.30,
                         fit: BoxFit.fill,
                       ),
                     )

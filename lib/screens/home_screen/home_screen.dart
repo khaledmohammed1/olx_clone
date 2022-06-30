@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shopping_app/screens/widgets/banner_widget.dart';
+import 'package:shopping_app/screens/widgets/category_widget.dart';
 
 import '../../controllers/home_controller.dart';
 import '../../controllers/location_controller.dart';
@@ -30,7 +31,8 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
             ),
-            body: Column(
+            body: ListView(
+              physics: const BouncingScrollPhysics(),
               children: [
                 Container(
                   color: Colors.white,
@@ -66,7 +68,8 @@ class HomeScreen extends StatelessWidget {
                   padding: const EdgeInsets.fromLTRB(12,0,12,8),
                   child: Column(
                     children: const [
-                       BannerWidget()
+                       BannerWidget(),
+                      CategoryWidget(),
                     ],
                   ),
                 ),
