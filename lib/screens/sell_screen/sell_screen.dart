@@ -1,15 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shopping_app/screens/forms/car_form/car_form.dart';
 
-import '../../services/home_services.dart';
+import '../../services/category_services.dart';
 
 class SellScreen extends StatelessWidget {
   const SellScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    HomeService homeService = HomeService();
+    FireBaseService categoryService = FireBaseService();
 
     return Scaffold(
       appBar: AppBar(
@@ -17,14 +18,20 @@ class SellScreen extends StatelessWidget {
         backgroundColor: Colors.white,
         automaticallyImplyLeading: false,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios,color: Colors.black,),
+          icon: const Icon(
+            Icons.arrow_back_ios,
+            color: Colors.black,
+          ),
           onPressed: () => Get.back(),
         ),
-        title: const Text("Sell Products",style: TextStyle(color: Colors.black),),
+        title: const Text(
+          "Sell Products",
+          style: TextStyle(color: Colors.black),
+        ),
         centerTitle: true,
       ),
       body: FutureBuilder<QuerySnapshot>(
-        future: homeService.categoryCollectionRef.orderBy("catName").get(),
+        future: categoryService.categoryCollectionRef.orderBy("catName").get(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
             return const Text('Something went wrong');
@@ -34,30 +41,51 @@ class SellScreen extends StatelessWidget {
               child: CircularProgressIndicator(),
             );
           }
-          return
-             Column(
-              children: [
-                Expanded(
-                  child: ListView.builder(
-                      physics: const BouncingScrollPhysics(),
-                      itemCount: snapshot.data!.docs.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        var doc = snapshot.data!.docs[index];
-                        return Padding(
-                          padding: const EdgeInsets.all(8.0),
+          return Column(
+            children: [
+              Expanded(
+                child: ListView.builder(
+                    physics: const BouncingScrollPhysics(),
+                    itemCount: snapshot.data!.docs.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      var doc = snapshot.data!.docs[index];
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: InkWell(
+                          onTap: () {
+                            if (doc['catName'] == "Cars") {
+                              // Get.to(() =>  SellCarForm());
+                            }
+                          },
                           child: ListTile(
-                            leading: Image.network(doc['image'],width: MediaQuery.of(context).size.width*.3,),
-                            title: Text(doc['catName'],style: const TextStyle(fontSize: 16,fontWeight: FontWeight.w700),),
+                            leading: Image.network(
+                              doc['image'],
+                              width: MediaQuery.of(context).size.width * .3,
+                            ),
+                            title: Text(
+                              doc['catName'],
+                              style: const TextStyle(
+                                  fontSize: 16, fontWeight: FontWeight.w700),
+                            ),
                             trailing: IconButton(
-                              icon: const Icon(Icons.arrow_forward_ios_outlined,color: Colors.grey,size: 18,),
+                              icon: const Icon(
+                                Icons.arrow_forward_ios_outlined,
+                                color: Colors.grey,
+                                size: 18,
+                              ),
                               onPressed: () => {
-                                },
+                                if (doc['catName'] == "Cars")
+                                  {
+                                    //Get.to(() =>  SellCarForm()),
+                                  }
+                              },
                             ),
                           ),
-                        );
-                      }),
-                ),
-              ],
+                        ),
+                      );
+                    }),
+              ),
+            ],
           );
         },
       ),

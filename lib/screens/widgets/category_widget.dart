@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../services/home_services.dart';
+import '../../services/category_services.dart';
 import '../category_screen/category_screen.dart';
 
 class CategoryWidget extends StatelessWidget {
@@ -10,10 +10,10 @@ class CategoryWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    HomeService homeService = HomeService();
+    FireBaseService categoryService = FireBaseService();
     return Container(
       child: FutureBuilder<QuerySnapshot>(
-        future: homeService.categoryCollectionRef.orderBy("catName",).get(),
+        future: categoryService.categoryCollectionRef.orderBy("catName",).get(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
             return const Text('Something went wrong');

@@ -3,18 +3,20 @@ import 'package:shopping_app/constance.dart';
 
 import 'custom_text.dart';
 class CustomTextFormField extends StatelessWidget {
-   CustomTextFormField({Key? key, required this.text, required this.hint, required this.onSave, this.validator,this.keyBoardType =  TextInputType.text}) : super(key: key);
+   CustomTextFormField({Key? key, required this.text, required this.hint, required this.onSave, this.validator,this.keyBoardType =  TextInputType.text,this.enabled = true}) : super(key: key);
   final String text;
   final String hint;
   final  void Function(String?)? onSave;
   final  String? Function(String?)? validator;
   TextInputType keyBoardType;
+  bool enabled;
 
   @override
   Widget build(BuildContext context) {
     return Column(children: [
       CustomText(text: text, fontSize: 14,color: Colors.grey.shade800,),
       TextFormField(
+        enabled: enabled,
         keyboardType:keyBoardType,
         onSaved: onSave,
         validator: validator,
