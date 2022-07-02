@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:shopping_app/screens/widgets/banner_widget.dart';
 import 'package:shopping_app/screens/widgets/category_widget.dart';
@@ -26,8 +27,7 @@ class HomeScreen extends StatelessWidget {
               title: Row(
                 children: [
                   const Icon(Icons.location_on_outlined,color: Colors.black,),
-                  const SizedBox(width: 20,),
-                  Text(locationController.address!.toString(),style: const TextStyle(color: Colors.black,fontSize: 18),),
+                  Expanded(child: Text(locationController.address!.toString(),style: const TextStyle(color: Colors.black,fontSize: 9),)),
                 ],
               ),
             ),

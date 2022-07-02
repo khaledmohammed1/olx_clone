@@ -1,12 +1,11 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:get/get.dart';
 import 'package:shopping_app/constance.dart';
 import 'package:shopping_app/screens/widgets/custom_text_fom_field.dart';
 
 class SellCarForm extends StatelessWidget {
-  SellCarForm(QueryDocumentSnapshot<Object> doc, {Key? key}) : super(key: key);
-
+  SellCarForm(this.models, {Key? key}) : super(key: key);
+  List<dynamic> models;
   final _formKey = GlobalKey<FormState>();
   validate(){
     if(_formKey.currentState!.validate()){
@@ -43,11 +42,32 @@ class SellCarForm extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
                    children: [
                     _appbar("Car Brands"),
-                     // ListView.builder(itemBuilder: (BuildContext context,int index){
-                     //   return ListTile(
-                     //     title: Text(categoryService.categoryCollectionRef!.doc('5GK0iMsU7UufsoCZ4vSn').['models'][index]),
-                     //   );
-                     // }),
+                     const Divider(),
+                     Padding(
+                       padding: const EdgeInsets.only(bottom: 8.0),
+                       child: Text(models[0],style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 16),),
+                     ),const Divider(),
+                     Padding(
+                       padding: const EdgeInsets.only(bottom: 8.0),
+                       child: Text(models[1],style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 16),),
+                     ),const Divider(),
+                     Padding(
+                       padding: const EdgeInsets.only(bottom: 8.0),
+                       child: Text(models[2],style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 16),),
+                     ),const Divider(),
+                     Padding(
+                       padding: const EdgeInsets.only(bottom: 8.0),
+                       child: Text(models[3],style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 16),),
+                     ),const Divider(),
+                     Padding(
+                       padding: const EdgeInsets.only(bottom: 8.0),
+                       child: Text(models[4],style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 16),),
+                     ),const Divider(),
+                     Padding(
+                       padding: const EdgeInsets.only(bottom: 8.0),
+                       child: Text(models[5],style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 16),),
+                     ),
+
                    ],
           ),
         );
@@ -96,7 +116,9 @@ class SellCarForm extends StatelessWidget {
                     },
                       text: "Brand / Model",
                       hint: "enter car brand or model",
-                      onSave: (v) {}),
+                      onSave: (v) {
+
+                      }),
                 ),
               ],
             ),

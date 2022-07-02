@@ -1,9 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:shopping_app/screens/forms/car_form/car_form.dart';
-
 import '../../services/category_services.dart';
+import '../forms/car_form/car_form.dart';
 
 class SellScreen extends StatelessWidget {
   const SellScreen({Key? key}) : super(key: key);
@@ -54,7 +53,13 @@ class SellScreen extends StatelessWidget {
                         child: InkWell(
                           onTap: () {
                             if (doc['catName'] == "Cars") {
-                              // Get.to(() =>  SellCarForm());
+                              List models= [];
+                              for(int i = 0;i<=5;i++){
+                                models.add(doc['models'][i]);
+                              }
+                              print(models);
+
+                               Get.to(() =>  SellCarForm(models));
                             }
                           },
                           child: ListTile(
@@ -67,21 +72,14 @@ class SellScreen extends StatelessWidget {
                               style: const TextStyle(
                                   fontSize: 16, fontWeight: FontWeight.w700),
                             ),
-                            trailing: IconButton(
-                              icon: const Icon(
+                             trailing:
+                             const Icon(
                                 Icons.arrow_forward_ios_outlined,
                                 color: Colors.grey,
                                 size: 18,
                               ),
-                              onPressed: () => {
-                                if (doc['catName'] == "Cars")
-                                  {
-                                    //Get.to(() =>  SellCarForm()),
-                                  }
-                              },
                             ),
                           ),
-                        ),
                       );
                     }),
               ),

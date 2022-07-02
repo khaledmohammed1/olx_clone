@@ -26,13 +26,10 @@ class LocalStorageData extends GetxController{
   }
 
   _getUserData()async{
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-     var value = prefs.getString(cashedUserData);
-     return UserModel.fromJson(json.decode(value!));
+
   }
   setUser(UserModel userModel)async{
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setString(cashedUserData, json.encode(userModel.toJson()));
+
   }
 
   deleteUserData()async{

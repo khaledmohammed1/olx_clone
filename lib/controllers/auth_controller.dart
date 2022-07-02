@@ -7,14 +7,10 @@ import 'package:shopping_app/screens/location_screen/location_screen.dart';
 import 'package:shopping_app/services/firestore_user.dart';
 import 'package:shopping_app/model/user_model.dart';
 
-import 'location_controller.dart';
 
-
-
-LocationController locationController =  LocationController();
 class AuthController extends GetxController {
   final GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ['email']);
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
   late String email, password, name, phoneNumber;
 
@@ -22,13 +18,12 @@ class AuthController extends GetxController {
 
   String? get user => _user.value?.email;
 
- // final LocalStorageData localStorageData = Get.find();
 
   @override
   void onInit() {
     // TODO: implement onInit
     super.onInit();
-    _user.bindStream(_auth.authStateChanges());
+    _user.bindStream(_firebaseAuth.authStateChanges());
   }
 
 
@@ -43,7 +38,7 @@ class AuthController extends GetxController {
       accessToken: googleSignInAuthentication.accessToken,
     );
 
-    await _auth.signInWithCredential(credential).then((user) async {
+    await _firebaseAuth.signInWithCredential(credential).then((user) async {
       await FireStoreUser().addUserToFireStore(UserModel(
         userId: user.user!.uid,
         email: user.user!.email,
@@ -58,7 +53,7 @@ class AuthController extends GetxController {
 
   void signInWithEmailAndPassword() async {
     try {
-      await _auth
+      await _firebaseAuth
           .signInWithEmailAndPassword(email: email, password: password)
           .then((value) async {
            await FireStoreUser().getCurrentUser(value.user!.uid);
@@ -78,7 +73,7 @@ class AuthController extends GetxController {
 
   void createAccountWithEmailAndPassword() async {
     try {
-      await _auth
+      await _firebaseAuth
           .createUserWithEmailAndPassword(email: email, password: password)
           .then((user) async {
         saveUser(user);
