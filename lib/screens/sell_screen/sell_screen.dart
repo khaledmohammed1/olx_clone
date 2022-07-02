@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../controllers/sell_car_form_controller.dart';
 import '../../services/category_services.dart';
 import '../forms/car_form/car_form.dart';
 
@@ -50,36 +51,38 @@ class SellScreen extends StatelessWidget {
                       var doc = snapshot.data!.docs[index];
                       return Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: InkWell(
-                          onTap: () {
-                            if (doc['catName'] == "Cars") {
-                              List models= [];
-                              for(int i = 0;i<=5;i++){
-                                models.add(doc['models'][i]);
+                        child: GetBuilder<SellCarFormController>(
+                          init: Get.put(SellCarFormController()),
+                          builder:(controller)=> InkWell(
+                            onTap: () {
+                              if (doc['catName'] == "Cars") {
+                                if(controller.models.isEmpty){
+                                for(int i = 0;i<=5;i++){
+                                    controller.models.add(doc['models'][i]);
+                                  }
+                                }
+                                Get.to(() =>  SellCarForm());
                               }
-                              print(models);
-
-                               Get.to(() =>  SellCarForm(models));
-                            }
-                          },
-                          child: ListTile(
-                            leading: Image.network(
-                              doc['image'],
-                              width: MediaQuery.of(context).size.width * .3,
-                            ),
-                            title: Text(
-                              doc['catName'],
-                              style: const TextStyle(
-                                  fontSize: 16, fontWeight: FontWeight.w700),
-                            ),
-                             trailing:
-                             const Icon(
-                                Icons.arrow_forward_ios_outlined,
-                                color: Colors.grey,
-                                size: 18,
+                            },
+                            child: ListTile(
+                              leading: Image.network(
+                                doc['image'],
+                                width: MediaQuery.of(context).size.width * .3,
+                              ),
+                              title: Text(
+                                doc['catName'],
+                                style: const TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.w700),
+                              ),
+                               trailing:
+                               const Icon(
+                                  Icons.arrow_forward_ios_outlined,
+                                  color: Colors.grey,
+                                  size: 18,
+                                ),
                               ),
                             ),
-                          ),
+                        ),
                       );
                     }),
               ),
