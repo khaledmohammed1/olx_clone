@@ -4,9 +4,11 @@ import 'package:shopping_app/constance.dart';
 import 'package:shopping_app/controllers/location_controller.dart';
 import 'package:shopping_app/controllers/sell_car_form_controller.dart';
 import 'package:shopping_app/screens/widgets/custom_text_fom_field.dart';
+import 'package:shopping_app/screens/widgets/imagePicker_widget.dart';
 
 class SellCarForm extends StatelessWidget {
   SellCarForm({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     Widget _appbar(String title) {
@@ -29,6 +31,7 @@ class SellCarForm extends StatelessWidget {
         centerTitle: true,
       );
     }
+
     Widget _brandList() {
       return Dialog(
         child: GetBuilder<SellCarFormController>(
@@ -39,7 +42,7 @@ class SellCarForm extends StatelessWidget {
               _appbar("Car Brands"),
               const Divider(),
               ListView.builder(
-                shrinkWrap: true,
+                  shrinkWrap: true,
                   physics: const BouncingScrollPhysics(),
                   itemCount: controller.models.length,
                   itemBuilder: (BuildContext context, int index) {
@@ -60,12 +63,12 @@ class SellCarForm extends StatelessWidget {
         ),
       );
     }
-    Widget _listView(){
+
+    Widget _listView() {
       return Dialog(
         child: GetBuilder<SellCarFormController>(
           init: Get.put(SellCarFormController()),
-          builder: (controller) =>
-              Column(
+          builder: (controller) => Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               _appbar("Car Fuel"),
@@ -92,12 +95,12 @@ class SellCarForm extends StatelessWidget {
         ),
       );
     }
-    Widget _listView2(){
+
+    Widget _listView2() {
       return Dialog(
         child: GetBuilder<SellCarFormController>(
           init: Get.put(SellCarFormController()),
-          builder: (controller) =>
-              Column(
+          builder: (controller) => Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               _appbar("Transmission"),
@@ -124,12 +127,12 @@ class SellCarForm extends StatelessWidget {
         ),
       );
     }
-    Widget _listView3(){
+
+    Widget _listView3() {
       return Dialog(
         child: GetBuilder<SellCarFormController>(
           init: Get.put(SellCarFormController()),
-          builder: (controller) =>
-              Column(
+          builder: (controller) => Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               _appbar("No Of Owners"),
@@ -230,7 +233,6 @@ class SellCarForm extends StatelessWidget {
                         labelText: "Year*",
                       ),
                     ),
-
                     TextFormField(
                       validator: (value) {
                         if (value!.isEmpty) {
@@ -248,13 +250,15 @@ class SellCarForm extends StatelessWidget {
                       height: 8,
                     ),
                     InkWell(
-                      onTap: (){
-                        showDialog(context: context, builder: (BuildContext context){
-                          return _listView();
-                        });
+                      onTap: () {
+                        showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return _listView();
+                            });
                       },
                       child: CustomTextFormField(
-                        enabled: false,
+                          enabled: false,
                           validator: (value) {
                             if (value!.isEmpty) {
                               return "Can't be empty";
@@ -267,17 +271,20 @@ class SellCarForm extends StatelessWidget {
                               ? ""
                               : controller.fuelTextEditingController.text,
                           onSave: (v) {}),
-                    ),const SizedBox(
+                    ),
+                    const SizedBox(
                       height: 8,
                     ),
                     InkWell(
-                      onTap: (){
-                        showDialog(context: context, builder: (BuildContext context){
-                          return _listView2();
-                        });
+                      onTap: () {
+                        showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return _listView2();
+                            });
                       },
                       child: CustomTextFormField(
-                        enabled: false,
+                          enabled: false,
                           validator: (value) {
                             if (value!.isEmpty) {
                               return "Can't be empty";
@@ -286,9 +293,12 @@ class SellCarForm extends StatelessWidget {
                           },
                           keyBoardType: TextInputType.number,
                           text: "Transmission*",
-                          hint: controller.transmissionTextEditingController.text == ""
+                          hint: controller
+                                      .transmissionTextEditingController.text ==
+                                  ""
                               ? ""
-                              : controller.transmissionTextEditingController.text,
+                              : controller
+                                  .transmissionTextEditingController.text,
                           onSave: (v) {}),
                     ),
                     TextFormField(
@@ -302,17 +312,18 @@ class SellCarForm extends StatelessWidget {
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         labelText: "KM Driver*",
-
                       ),
                     ),
                     const SizedBox(
                       height: 8,
                     ),
                     InkWell(
-                      onTap: (){
-                        showDialog(context: context, builder: (BuildContext context){
-                          return _listView3();
-                        });
+                      onTap: () {
+                        showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return _listView3();
+                            });
                       },
                       child: CustomTextFormField(
                           enabled: false,
@@ -339,7 +350,7 @@ class SellCarForm extends StatelessWidget {
                       controller: controller.titleTextEditingController,
                       decoration: const InputDecoration(
                         labelText: "Add title*",
-                        hintText: "Enter car title with brand" ,
+                        hintText: "Enter car title with brand",
                       ),
                     ),
                     TextFormField(
@@ -354,33 +365,43 @@ class SellCarForm extends StatelessWidget {
                       controller: controller.descriptionTextEditingController,
                       decoration: const InputDecoration(
                         labelText: "Description*",
-                        hintText: "Enter more details about car features,condition and reason for sell",
-
+                        hintText:
+                            "Enter more details about car features,condition and reason for sell",
                       ),
                     ),
                     GetBuilder<LocationController>(
                       init: Get.put(LocationController()),
-                      builder:(locationController)=>
-                          TextFormField(
-                            minLines: 2,
-                            maxLines: 4,
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return "Can't be empty";
-                              }
-                              return null;
-                            },
-                            onTap: (){
-                              controller.addressTextEditingController.text = locationController.address.toString();
-                            },
-                            controller: controller.addressTextEditingController,
-                            decoration: const InputDecoration(
-                              labelText: "Address*",
-                            ),
-                          ),
-                          ),
+                      builder: (locationController) => TextFormField(
+                        minLines: 2,
+                        maxLines: 4,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "Can't be empty";
+                          }
+                          return null;
+                        },
+                        onTap: () {
+                          controller.addressTextEditingController.text =
+                              locationController.address.toString();
+                        },
+                        controller: controller.addressTextEditingController,
+                        decoration: const InputDecoration(
+                          labelText: "Address*",
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 20,),
+                    NeumorphicButton(
+                      onPressed: (){
+                        showDialog(context: context, builder: (BuildContext context){
+                          return const ImagePickerWidget();
+                        });
+                      },
+                      child:const SizedBox(height: 30,
+                      child:  Center(child: Text("Upload image"),),),
+                    ),
                     const SizedBox(
-                      height: 100,
+                      height: 80,
                     ),
                   ],
                 ),
@@ -390,8 +411,8 @@ class SellCarForm extends StatelessWidget {
         ),
       ),
       bottomSheet: GetBuilder<SellCarFormController>(
-        init:  Get.put(SellCarFormController()),
-        builder:(controller)=> Row(
+        init: Get.put(SellCarFormController()),
+        builder: (controller) => Row(
           children: [
             Expanded(
               child: Padding(
@@ -401,7 +422,7 @@ class SellCarForm extends StatelessWidget {
                   child: const Padding(
                     padding: EdgeInsets.all(6.0),
                     child: Text(
-                      "Next",
+                      "Save",
                       textAlign: TextAlign.center,
                       style: TextStyle(color: Colors.white),
                     ),

@@ -9,6 +9,7 @@ class SellCarFormController extends GetxController{
     if (formKey.currentState!.validate()) {
       print("validate");
     }
+
   }
 
   List models= [];

@@ -51,6 +51,7 @@ dependencies:
   csc_picker: ^0.2.6
   flutter_neumorphic: ^3.2.0
   animated_text_kit: ^4.2.2
+  image_picker: ^0.8.5+3
 
 
 

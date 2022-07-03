@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../controllers/sell_car_form_controller.dart';
 import '../../services/category_services.dart';
-import '../forms/car_form/car_form.dart';
+import '../forms/sell_car_form/car_form.dart';
 
 class SellScreen extends StatelessWidget {
   const SellScreen({Key? key}) : super(key: key);
