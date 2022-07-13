@@ -61,13 +61,21 @@ class _ImagePickerWidgetState extends State<ImagePickerWidget> {
             children: [
               Stack(
                 children: [
-                  Positioned(
-                    right: 0,
-                      child: IconButton(icon: const Icon(Icons.clear,color: Colors.grey,),onPressed: (){
-                      setState((){
-                        _image=null;
-                      });
-                  },)),
+                  if (_image != null)
+                    Positioned(
+                      right: 0,
+                      child: IconButton(
+                        icon: const Icon(
+                          Icons.clear,
+                          color: Colors.grey,
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            _image = null;
+                          });
+                        },
+                      ),
+                    ),
                   SizedBox(
                     height: 120,
                     width: MediaQuery.of(context).size.width,
@@ -86,22 +94,35 @@ class _ImagePickerWidgetState extends State<ImagePickerWidget> {
                 height: 20,
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 12,right: 12),
+                padding: const EdgeInsets.only(left: 12, right: 12),
                 child: Row(
                   children: [
-                    Expanded(child: NeumorphicButton(
-                      style: const NeumorphicStyle(color: Colors.green),
-                      child: const Text("Save",textAlign: TextAlign.center,style: TextStyle(color: Colors.white),),
-                    )),
-                    const SizedBox(width: 10,),
-                    Expanded(child: NeumorphicButton(
-                      style: const NeumorphicStyle(color: Colors.red),
-                      child: const Text("Cancel",textAlign: TextAlign.center,style: TextStyle(color: Colors.white),),
-                    )),
+                    Expanded(
+                      child: NeumorphicButton(
+                        style: const NeumorphicStyle(color: Colors.green),
+                        child: const Text(
+                          "Save",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Expanded(
+                      child: NeumorphicButton(
+                        style: const NeumorphicStyle(color: Colors.red),
+                        child: const Text(
+                          "Cancel",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
-
               const SizedBox(
                 height: 20,
               ),
